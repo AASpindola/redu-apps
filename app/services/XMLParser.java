@@ -26,4 +26,8 @@ public class XMLParser {
         return app;
     }
 
+    public static Document fromApptoXML (App app) {
+        return null;
+    }
+
 }

@@ -30,7 +30,14 @@ public class App {
     public String copyright;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="app_lecture", joinColumns = {@JoinColumn(name="appName")}, inverseJoinColumns = {@JoinColumn(name="lecId")})
-    public Set<Lecture> lectures;
+    @JoinTable(name="app_category", joinColumns = {@JoinColumn(name="appName")}, inverseJoinColumns = {@JoinColumn(name="catName")})
+    public Set<Category> categories;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="app_user", joinColumns = {@JoinColumn(name="appName")}, inverseJoinColumns = {@JoinColumn(name="email")})
+    public Set<User> users;
+
+    @OneToMany
+    public Set<Comment> comments;
 
 }
