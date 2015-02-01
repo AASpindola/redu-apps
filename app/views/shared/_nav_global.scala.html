@@ -1,0 +1,49 @@
+<div class="nav-global nav-global-fixed-top">
+    <style>
+        .main-wrapper { padding-top: 42px; }
+    </style>
+    <div class="nav-global-inner">
+        <div class="nav-global-container">
+            <h1>
+                <a href="#" class="nav-global-brand logo-redu-gray_140_40 text-replacement">Redu</a>
+            </h1>
+            <div class="nav-global-buttons">
+                <a href="#" class="nav-global-button">Início</a>
+                <a href="#" class="nav-global-button">Ensine</a>
+                <a href="#" class="nav-global-button">Ambientes</a>
+                <a href="#" class="nav-global-button nav-global-button-active">Aplicativos</a>
+            </div>
+            <div class="nav-global-right-area">
+                <%= render "shared/form_search" %>
+                <div class="nav-global-buttons-dropdown button-toolbar pull-right">
+                    <div class="button-group">
+                        <button class="button-default nav-global-button-dropdown dropdown-toggle icon-profile-2-lightblue_16_18-before" data-toggle="dropdown">
+                            <span class="button-dropdown-arrow icon-arrow-down-lightblue_8_10"></span>
+                        </button>
+                        <div class="dropdown-menu nav-global-profile-dropdown">
+                            <div class="arrow"></div>
+                            <div class="nav-global-profile-header">
+                               CURRENT_USER_NAME
+                            </div>
+                            <ul class="nav-global-profile-items">
+                                <li class="nav-global-profile-item">
+                                    <a href="#" class="nav-global-profile-item-link icon-profile-lightblue_16_18-before">Meu Perfil</a>
+                                    <a href="#" class="nav-global-profile-item-link-secondary link-secondary">Editar perfil</a>
+                                </li>
+                                <li class="nav-global-profile-item">
+                                    <a href="#" class="nav-global-profile-item-link icon-message-lightblue_16_18-before">Mensagens</a>
+                                </li>
+                                <li class="nav-global-profile-item">
+                                    <a href="#" class="nav-global-profile-item-link icon-manage-lightblue_16_18-before">Configurações</a>
+                                </li>
+                                <li class="nav-global-profile-item">
+                                    <a href="#" class="nav-global-profile-item-link nav-global-profile-item-link-iconless">Sair</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
