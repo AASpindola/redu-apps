@@ -1,3 +1,15 @@
 @(message: String)
 
-@message
+<head>
+    <link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/bootstrap-redu.css")'>
+    <script type="text/javascript" src="/assets/javascripts/jquery.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/bootstrap-redu.js"></script>
+</head>
+
+<body>
+
+@* IF DO LOGGED IN *@
+@views.html.shared._header_not_logged_in()
+
+@views.html.shared._footer()
+</body>
