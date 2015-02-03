@@ -7,7 +7,7 @@
 </head>
 <body>
     <div>
-        <form method="POST" action="@routes.Application.saveNewApp">
+        <form method="POST" action="@routes.AppController.saveNewApp">
 
             <div id="category-content">
                 <select name="category">
@@ -28,10 +28,6 @@
             <label>thumbnail:</label>
 
             <input type='text'  name='app-thumbnail' value=''/> <br/>
-
-            <label>views:</label>
-
-            <input type='text'  name='app-views' value=''/> <br/>
 
             <label>url:</label>
 

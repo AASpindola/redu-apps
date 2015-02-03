@@ -1,6 +1,7 @@
 package services;
 
 import models.App;
+import models.Category;
 import play.db.jpa.JPA;
 
 import java.util.List;
@@ -19,9 +20,9 @@ public class AppService {
         return instance;
     }
 
-    public static App getAppById (int id) {
+    public static App getAppByName (String name) {
 
-        return JPA.em().find(App.class, id);
+        return JPA.em().find(App.class, name);
     }
 
     public static List<App> getAllApps () {
@@ -39,6 +40,19 @@ public class AppService {
                 .getResultList();
 
         return resultSet;
+    }
+
+    public static List<App> getAppsByNameLike (String name){
+
+        String q = "SELECT a FROM App a WHERE appName like :name";
+        List<App> resultSet = JPA.em().createQuery(q, App.class)
+                .setParameter("name", "%"+name+"%")
+                .getResultList();
+        return resultSet;
+    }
+
+    public static List<App> getAppsByCategory (Category cat){
+        return null;
     }
 
 }

@@ -1,69 +1,49 @@
 package controllers;
 
-import models.App;
-import models.Category;
-import play.Logger;
+import models.*;
 import play.db.jpa.JPA;
 import play.libs.F;
 import play.mvc.*;
-
+import views.html.*;
 import services.AppService;
 import services.CategoriesService;
-import views.html.*;
 
 import play.db.jpa.Transactional;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Application extends Controller {
+
+    public static AppService appService = AppService.getInstance();
+    public static CategoriesService categoriesService = CategoriesService.getInstance();
 
     @Transactional
     public static Result index() {
 
-        AppService appService = AppService.getInstance();
-        CategoriesService categoriesService = CategoriesService.getInstance();
         List<App> apps = appService.getAllApps();
         List<Category> categories = categoriesService.getAllCategories();
 
         return ok(index.render(apps, categories));
     }
 
-    @Transactional
-    public static Result newApp() {
-        CategoriesService categoriesService = CategoriesService.getInstance();
-        return ok(views.html.newApp.render(categoriesService.getAllCategories()));
+    public static Result newCategory() {
+        return ok(views.html.newcategory.render());
     }
 
     @Transactional
-    public static Result saveNewApp() {
+    public static Result saveNewCategory() {
 
-        // O app já é verificado no frontend
-
-        Map<String, String[]> appQuery_data = request().body().asFormUrlEncoded();
-        App app = new App();
-
-        app.appName = appQuery_data.get("app-name")[0];
-        app.thumbnail = appQuery_data.get("app-thumbnail")[0];
-        app.views = Integer.parseInt(appQuery_data.get("app-views")[0]);
-        app.url = appQuery_data.get("app-url")[0];
-        app.language = appQuery_data.get("app-language")[0];
-        app.coreUrl = appQuery_data.get("app-coreUrl")[0];
-        app.objective = appQuery_data.get("app-objective")[0];
-        app.synopsis = appQuery_data.get("app-synopsis")[0];
-        app.description = appQuery_data.get("app-description")[0];
-        app.publishers = appQuery_data.get("app-publishers")[0];
-        app.submitters = appQuery_data.get("app-submitters")[0];
-        app.copyright = appQuery_data.get("app-copyright")[0];
-
-        //Falta users, author, categories e comments
+        Map<String, String[]> catQuery_data = request().body().asFormUrlEncoded();
+        Category cat = new Category();
+        cat.catName = catQuery_data.get("cat-name")[0];
+        cat.kind = catQuery_data.get("cat-kind")[0];
+        cat.apps = new HashSet<App>();
 
         try {
             JPA.withTransaction(new F.Function0<Boolean>() {
                 @Override
                 public Boolean apply() throws Throwable {
-                    JPA.em().persist(app);
+                    JPA.em().persist(cat);
                     JPA.em().getTransaction().commit();
                     return null;
                 }
@@ -72,7 +52,6 @@ public class Application extends Controller {
             throwable.printStackTrace();
         }
 
-        return ok(app.appName);
+        return ok("Categoria " + cat.catName + " adicionada com sucesso!");
     }
-
 }
