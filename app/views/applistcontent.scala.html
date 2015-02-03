@@ -1,7 +1,7 @@
 @(apps: List[models.App])
 
 @for(app <- apps){
-    <div class="apps-list-item general-list-item">
+    <div class="apps-list-item general-list-item app-item" app-name="@app.appName">
         <!--
         <% if favorite_flag %>
         <%= link_to "Remover dos favoritos", user_favorite_path(current_user, App.favorited_by([app], current_user)),

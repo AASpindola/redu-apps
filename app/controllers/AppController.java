@@ -94,8 +94,10 @@ public class AppController extends Controller {
     public static Result searchAppsByName() {
         DynamicForm params = form().bindFromRequest();
         String query = params.get("q");
+        String lastName = params.get("l");
+        lastName = lastName == null ? "" : lastName;
         query = query == null ? "" : query;
-        List<App> apps = appService.getAppsByNameLike(query);
+        List<App> apps = appService.getAppsByNameLike(query, lastName);
         return ok(views.html.applistcontent.render(apps));
     }
 

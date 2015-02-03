@@ -42,13 +42,22 @@ public class AppService {
         return resultSet;
     }
 
-    public static List<App> getAppsByNameLike (String name){
+    public static List<App> getAppsByNameLike (String name, String lastName){
 
-        String q = "SELECT a FROM App a WHERE appName like :name";
-        List<App> resultSet = JPA.em().createQuery(q, App.class)
-                .setParameter("name", "%"+name+"%")
-                .getResultList();
-        return resultSet;
+        if (lastName.equals("")) {
+            String q = "SELECT a FROM App a WHERE appName like :name order by appName asc";
+            List<App> resultSet = JPA.em().createQuery(q, App.class)
+                    .setParameter("name", "%" + name + "%")
+                    .getResultList();
+            return resultSet.size() >12 ? resultSet.subList(0, 12) : resultSet;
+        } else {
+            String q = "SELECT a FROM App a WHERE appName like :name and appName > :lastName order by appName asc";
+            List<App> resultSet = JPA.em().createQuery(q, App.class)
+                    .setParameter("name", "%" + name + "%")
+                    .setParameter("lastName", lastName)
+                    .getResultList();
+            return resultSet.size() >12 ? resultSet.subList(0, 12) : resultSet;
+        }
     }
 
     public static List<App> getAppsByCategory (Category cat){
