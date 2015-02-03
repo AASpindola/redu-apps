@@ -1,6 +1,7 @@
 package controllers;
 
 import models.App;
+import models.Category;
 import play.Logger;
 import play.db.jpa.JPA;
 import play.libs.F;
@@ -13,6 +14,7 @@ import views.html.*;
 import play.db.jpa.Transactional;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class Application extends Controller {
@@ -21,9 +23,11 @@ public class Application extends Controller {
     public static Result index() {
 
         AppService appService = AppService.getInstance();
-        App ap = appService.getAppsByAuthor("artur").get(0);
+        CategoriesService categoriesService = CategoriesService.getInstance();
+        List<App> apps = appService.getAllApps();
+        List<Category> categories = categoriesService.getAllCategories();
 
-        return ok(index.render(ap.appName));
+        return ok(index.render(apps, categories));
     }
 
     @Transactional
@@ -53,7 +57,7 @@ public class Application extends Controller {
         app.submitters = appQuery_data.get("app-submitters")[0];
         app.copyright = appQuery_data.get("app-copyright")[0];
 
-        //Falta users, categories e comments
+        //Falta users, author, categories e comments
 
         try {
             JPA.withTransaction(new F.Function0<Boolean>() {
