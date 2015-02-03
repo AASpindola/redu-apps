@@ -28,6 +28,7 @@ public class App {
     public String publishers;
     public String submitters;
     public String copyright;
+    public String country;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name="app_category", joinColumns = {@JoinColumn(name="appName")}, inverseJoinColumns = {@JoinColumn(name="catName")})

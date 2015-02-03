@@ -1,0 +1,198 @@
+@(app: models.App)
+
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>@app.appName</title>
+    <link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/bootstrap-redu.css")'>
+    <script type="text/javascript" src="/assets/javascripts/jquery.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/bootstrap-redu.js"></script>
+</head>
+
+<body>
+<!-- IF NOT LOGGED IN -->
+@views.html.shared._header_not_logged_in()
+<!-- ELSE -->
+@*@views.html.shared._nav_global()*@
+
+<div class="main-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="span16">
+                <!--
+                <div class="apps-portal-header">
+                    <div id="apps-portal-breadcrumb" class="breadcrumb-mini-wrapper">
+                        <%= render_navigation context: :breadcrumbs %>
+                    </div>
+                </div>
+                -->
+                <div class="apps-portal-content content-body">
+                    <div class="oer-main-wrapper">
+
+                        <div class="oer-header clearfix">
+                            <h3 class="oer-title"> @app.appName </h3>
+                        </div>
+
+                        <div class="oer-body clearfix">
+                            <!-- Coluna da esquerda. -->
+                            <div class="oer-left-sidebar">
+                                <!-- Thumbnail -->
+                                <img src='@routes.Assets.at("images/missing_apps_large.png")' alt="@app.appName" title="@app.appName" class="oer-thumbnail" width="160" height="160" />
+
+                                <!-- Área de classificação. -->
+                                @views.html.app._stars()
+
+                                <!-- Contadores. -->
+                                <ul class="oer-counters">
+                                    <li id="evaluation-count" class="oer-counter legend icon-star-empty-gray_16_18-before">
+                                        Nenhuma classificação.
+                                    </li>
+                                    <li class="oer-counter legend icon-favorite-gray_16_18-before">
+                                        Nenhum favorito.
+                                    </li>
+                                    <li class="oer-counter legend icon-seen-gray_16_18-before">
+                                        @app.views visualizações.
+                                    </li>
+                                    <li class="oer-counter legend icon-comment-gray_16_18-before">
+                                        @app.comments.size() comentários.
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Coluna do meio. -->
+                            <div class="oer-middle-sidebar">
+                                <div class="oer-info-n-buttons clearfix">
+                                    <!-- Informações. -->
+                                    <ul class="oer-info">
+                                        <li class="oer-info-item">
+                                            <em class="oer-info-key">Autor:</em>
+                                            <span class="oer-info-value">@app.author</span>
+                                        </li>
+
+                                        <!-- Pra cada categoria -->
+                                        <li class="oer-info-item">
+                                            <em class="oer-info-key">Nivel:</em>
+                                            <span class="oer-info-value">Ensino medio</span>
+                                        </li>
+
+                                        <li class="oer-info-item">
+                                            <em class="oer-info-key">Area:</em>
+                                            <span class="oer-info-value">Ciencias Humanas</span>
+                                        </li>
+
+
+                                        <li class="oer-info-item">
+                                            <em class="oer-info-key">Objetivo:</em>
+                                            <span class="oer-info-value">@app.objective</span>
+                                        </li>
+                                        <li class="oer-info-item">
+                                            <em class="oer-info-key">Sinopse:</em>
+                                            <span class="oer-info-value">@app.synopsis</span>
+                                        </li>
+                                        <li class="oer-info-item">
+                                            <em class="oer-info-key">Descrição:</em>
+                                            <span class="oer-info-value">@app.description</span>
+                                        </li>
+                                    </ul>
+
+                                    <!-- Botões. -->
+                                    <div class="oer-buttons">
+                                        <button class="button-default" data-toggle="modal-app" data-modal-title="@app.appName" data-modal-subtitle="@app.author" data-modal-url="@app.url">Abrir este Recurso</button>
+                                        <!-- @*
+                                        <% if can? :create, UserAppAssociation.new(app: @app)   %>
+                                        <%= form_tag user_favorites_path(current_user), method: "post" do %>
+                                        <%= hidden_field_tag :app_id , @app.id %>
+                                        <%= content_tag :button, type: :submit, class: "button-primary" do %>
+                                        Adicionar a Favoritos
+                                        <% end %>
+                                        <% end %>
+                                        <% end %>
+                                        <% if can? :checkout, @app %>
+                                        <%= form_tag app_checkout_path(@app, previous_step: 0), method: :post, remote: true do %>
+                                        <%= content_tag :button, "Adicionar à Disciplina", type: :submit, class: "button-success" %>
+                                        <% end %>
+                                        <% end %>
+                                        <% if can? :destroy, @favorite %>
+                                        <%= link_to "Remover dos Favoritos", user_favorite_path(current_user, @favorite), method: "delete", class: "icon-favorite-delete-lightblue_16_18-before", title: "Remover dos Favoritos" %>
+                                        <% end %>
+                                        *@ -->
+                                    </div>
+                                </div>
+
+                                <div class="oer-meta-wrapper">
+                                    <ul class="oer-meta meta-data-column-1">
+                                        <li class="oer-meta-item">
+                                            <span class="legend"><em>Publicador:</em> @app.publishers </span>
+                                        </li>
+                                        <li class="oer-meta-item">
+                                            <span class="legend"><em>Detentor dos Direitos:</em> @app.copyright</span>
+                                        </li>
+                                        <li class="oer-meta-item">
+                                            <span class="legend"><em>Submetido por:</em> @app.submitters></span>
+                                        </li>
+                                    </ul>
+
+                                    <ul class="oer-meta meta-data-column-2">
+                                        <li class="oer-meta-item">
+                                            <span class="legend"><em>Classificação:</em> "app.classification"</span>
+                                        </li>
+                                        <li class="oer-meta-item">
+                                            <span class="legend"><em>Língua:</em> @app.language</span>
+                                        </li>
+                                        <li class="oer-meta-item">
+                                            <span class="legend"><em>País de Origem:</em> @app.country</span>
+                                        </li>
+                                        <li class="oer-meta-item">
+                                            <span class="legend"><em>Origem:</em> @app.url</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- @*
+                                <div class="oer-images">
+                                <% @app.screen_shots.each do |ss| %>
+                                <%= image_tag ss.screen.url(:unique), alt: "Prévia", title: "Prévia", class: screen_shot_class(@app.screen_shots.length), size: "700x200" %>
+                                <% end %>
+                            </div>
+                            *@ -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botões de comentários
+                    <% if can? :create, Comment %>  -->
+                    <div class="content-section oer-comments reply-buttons">
+                        <ul class="reply-buttons-list">
+                            <li>
+                                <button class="button-primary button-big reply-status button-comment icon-comment-white_blue_32_34-before" title="Comentar sobre este aplicativo">Comentar</button>
+                            </li>
+                        </ul>
+
+                        <!-- render comentarios comments/form" -->
+
+                    </div>
+
+                    <!-- Comentários comuns. -->
+
+                    <ol id="comments" class="status-list">
+                        <!-- render comentarios common -->
+                    </ol>
+
+                </div>
+                <!--
+                <div class="breadcrumb-mini-wrapper">
+                    <br/>
+                    @*<%= render_navigation context: :breadcrumbs %>*@
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+    <div class="footer-pusher"></div>
+</div>
+
+@views.html.shared._footer()
+
+</body>
+
+</html>

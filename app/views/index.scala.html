@@ -1,23 +1,91 @@
 @(apps: List[models.App], categories: List[models.Category])
 
-<head>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Redu Apps</title>
     <link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/bootstrap-redu.css")'>
     <script type="text/javascript" src="/assets/javascripts/jquery.js"></script>
     <script type="text/javascript" src="/assets/javascripts/bootstrap-redu.js"></script>
 </head>
 
 <body>
+<div class="main-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="span16">
+                <div class="apps-portal-header">
 
-@* IF DO LOGGED IN *@
-@views.html.shared._header_not_logged_in()
 
-<div class="oer-apps-wrapper">
-    <div id="apps" class="apps-list">
-        @for(app <- apps){
-            @views.html.shared._app(app)
-        }
+                    @* <div id="apps-portal-breadcrumb" class="breadcrumb-mini-wrapper">
+                        <%= render_navigation context: :breadcrumbs %>
+                    </div>*@
+
+                </div>
+                <div class="apps-portal-content content-body">
+                    <div class="apps-portal-oer">
+                        <div class="apps-portal-oer-explaination" style='background: url("@routes.Assets.at("images/oer-logo.png")") no-repeat'>
+                            <span class="apps-portal-oer-close icon-close-gray_16_18 text-replacement">Fechar</span>
+                            <h3 class="apps-portal-oer-explaination-title">O que são R.E.A.s?</h3>
+                            <p>Recursos Educacionais Abertos são <em>materiais</em> de ensino, aprendizado e pesquisa em qualquer suporte ou mídia, que estão sob domínio público, ou estão licenciados de maneira aberta, permitindo que sejam utilizados ou adaptados por terceiros. O uso de formatos técnicos abertos facilita o acesso e o reuso potencial dos recursos publicados digitalmente. Recursos Educacionais Abertos podem incluir cursos completos, partes de cursos, módulos, livros didáticos, artigos de pesquisa, vídeos, testes, software, e qualquer outra ferramenta, material ou técnica que possa apoiar o acesso ao conhecimento. (<a href="http://rea.net.br/site/o-que-e-rea/" title="UNESCO/Comunidade REA Brasil">UNESCO/Comunidade REA Brasil</a>)</p>
+                        </div>
+                    </div>
+
+                    <form method="get" action="#" class="form-search area-fix form-search-expandable apps-portal-search-form">
+                        <input id="search-input" type="text" class="control-area area-infix" placeholder="Procure Aplicativos..." data-id="apps-portal-breadcrumb">
+                        <button id="search-btn" class="button-default area-suffix" type="button">
+                            <span class="control-search-icon icon-magnifier-gray_16_18 text-replacement">Busca</span>
+                        </button>
+                    </form>
+
+                    <div class="oer-apps-wrapper">
+                        <!-- conteudo dos apps -->
+                        <div id="apps" class="apps-list"> </div>
+                    </div>
+                </div>
+                 <div class="breadcrumb-mini-wrapper">
+                    <br/>
+                    @*<%= render_navigation context: :breadcrumbs %>*@
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="footer-pusher"></div>
 </div>
 
-@views.html.shared._footer()
+<script>
+
+    $(document).ready(searchAppsByName(""));
+
+    $('body').on('keypress','#search-input', function(e) {
+        var code = e.keyCode || e.which;
+        if(code == 13) {
+            var textInput = $(this).val();
+            searchAppsByName(textInput);
+        }
+    });
+
+    $('body').on('click','#search-btn', function(e) {
+        var textInput = $('#search-input').val();
+        searchAppsByName(textInput);
+    });
+
+    function searchAppsByName(name){
+        var query = {"q":name};
+        $.ajax({
+            url: "@routes.AppController.searchAppsByName()",
+            data: query,
+            success: function (response) {
+                $("#apps").html(response);
+            }
+        });
+    }
+
+    function searchAppsByCategory(category){
+
+    }
+
+</script>
+
 </body>
+</html>

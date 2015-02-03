@@ -1,0 +1,12 @@
+@*
+Renderiza uma estrela.
+Caso algum usuário estiver logado, a estrela é clicável para o voto. Caso contrário a estrela é apenas mostrada.
+
+Variáveis locais:
+index: indica o número ordenal da estrela.
+type: indica o tipo de estrela (lightgray, gray ou blue).
+*@
+<li class="oer-star">
+    <a href="#" method="post" class="icon-star-full-blue_16_18 show text-replacement"/>
+    <span class="icon-star-full-<%= type %>_16_18 show text-replacement">0</span>
+</li>
