@@ -1,0 +1,151 @@
+<div class="oer-main-wrapper">
+
+
+    <div class="oer-header clearfix">
+        @*<% if @favorite %>
+        <span class="icon-favorite-blue_32_34 text-replacement oer-favorite-icon" rel="tooltip" title="Este é um Aplicativo Favorito." data-placement="top">Favorito</span>
+        <% end %>*@
+        <h3 class="oer-title"> App Name </h3>
+    </div>
+
+    <div class="oer-body clearfix">
+        @* Coluna da esquerda. *@
+        <div class="oer-left-sidebar">
+            @* Thumbnail. *@
+            <img src="assets/images/missing_apps_large.png" alt="appname" title="appname" class="oer-thumbnail" size="160x160" />
+
+            @*Área de classificação. *@
+            @views.html.app._stars()
+
+            @*Contadores. *@
+            <ul class="oer-counters">
+                <li id="evaluation-count" class="oer-counter legend icon-star-empty-gray_16_18-before">
+                    Nenhuma classificação.
+                </li>
+                <li class="oer-counter legend icon-favorite-gray_16_18-before">
+                    Nenhum favorito.
+                </li>
+                <li class="oer-counter legend icon-seen-gray_16_18-before">
+                   29 visualizações.
+                </li>
+                <li class="oer-counter legend icon-comment-gray_16_18-before">
+                    Nenhum comentário.
+                </li>
+            </ul>
+        </div>
+
+        @*Coluna do meio. *@
+        <div class="oer-middle-sidebar">
+
+            <div class="oer-info-n-buttons clearfix">
+                @*Informações. *@
+                <ul class="oer-info">
+                    <li class="oer-info-item">
+                        <em class="oer-info-key">Autor:</em>
+                        <span class="oer-info-value">João</span>
+                    </li>
+
+                    @*Pra cada categoria *@
+                    <li class="oer-info-item">
+                        <em class="oer-info-key">Nivel:</em>
+                        <span class="oer-info-value">Ensino medio</span>
+                    </li>
+
+                    <li class="oer-info-item">
+                        <em class="oer-info-key">Area:</em>
+                        <span class="oer-info-value">Ciencias Humanas</span>
+                    </li>
+
+
+                    <li class="oer-info-item">
+                        <em class="oer-info-key">Objetivo:</em>
+                        <span class="oer-info-value">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lacus diam, malesuada eget sodales nec, vulputate eget quam. Nullam condimentum molestie tellus sit amet varius. Aliquam tempor nisi id velit semper eleifend. Cras ac ullamcorper ligula. In in maximus risus. Integer lacinia, ante in eleifend sollicitudin, eros nisl lobortis urna, et mattis enim sapien et orci. Donec eget mi eleifend, sodales sem quis, ultrices mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut tellus fermentum, eleifend purus ultricies, maximus magna. Donec id congue urna, sit amet tempus eros. Aenean fringilla ante bibendum, imperdiet augue in, dapibus purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ullamcorper ligula ac ipsum scelerisque, ut malesuada massa egestas. Nullam sed porta libero, non varius diam. Suspendisse rutrum interdum scelerisque.</span>
+                    </li>
+                    <li class="oer-info-item">
+                        <em class="oer-info-key">Sinopse:</em>
+                        <span class="oer-info-value">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lacus diam, malesuada eget sodales nec, vulputate eget quam. Nullam condimentum molestie tellus sit amet varius. Aliquam tempor nisi id velit semper eleifend. Cras ac ullamcorper ligula. In in maximus risus. Integer lacinia, ante in eleifend sollicitudin, eros nisl lobortis urna, et mattis enim sapien et orci. Donec eget mi eleifend, sodales sem quis, ultrices mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut tellus fermentum, eleifend purus ultricies, maximus magna. Donec id congue urna, sit amet tempus eros. Aenean fringilla ante bibendum, imperdiet augue in, dapibus purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ullamcorper ligula ac ipsum scelerisque, ut malesuada massa egestas. Nullam sed porta libero, non varius diam. Suspendisse rutrum interdum scelerisque.</span>
+                    </li>
+                    <li class="oer-info-item">
+                        <em class="oer-info-key">Descrição:</em>
+                        <span class="oer-info-value">In laoreet leo nibh, sit amet dignissim sapien pharetra at. Donec eget interdum magna, vitae malesuada sapien. Donec venenatis est est, in condimentum nibh ultricies sed. Nunc velit elit, lobortis ut nisi eget, consectetur ullamcorper metus. Sed vitae lorem nec odio elementum tincidunt. </span>
+                    </li>
+                </ul>
+
+                @*<%# Botões. %>*@
+                <div class="oer-buttons">
+                    <button class="button-default" data-toggle="modal-app" data-modal-title="app.name" data-modal-subtitle="app.author" data-modal-url="app.url">Abrir este Recurso</button>
+                    @*<% if can? :create, UserAppAssociation.new(app: @app)   %>
+                    <%= form_tag user_favorites_path(current_user), method: "post" do %>
+                    <%= hidden_field_tag :app_id , @app.id %>
+                    <%= content_tag :button, type: :submit, class: "button-primary" do %>
+                    Adicionar a Favoritos
+                    <% end %>
+                    <% end %>
+                    <% end %>
+                    <% if can? :checkout, @app %>
+                    <%= form_tag app_checkout_path(@app, previous_step: 0), method: :post, remote: true do %>
+                    <%= content_tag :button, "Adicionar à Disciplina", type: :submit, class: "button-success" %>
+                    <% end %>
+                    <% end %>
+                    <% if can? :destroy, @favorite %>
+                    <%= link_to "Remover dos Favoritos", user_favorite_path(current_user, @favorite), method: "delete", class: "icon-favorite-delete-lightblue_16_18-before", title: "Remover dos Favoritos" %>
+                    <% end %>-*@
+                </div>
+            </div>
+
+            <div class="oer-meta-wrapper">
+                <ul class="oer-meta meta-data-column-1">
+                    <li class="oer-meta-item">
+                        <span class="legend"><em>Publicador:</em> "app.publishers"</span>
+                    </li>
+                    <li class="oer-meta-item">
+                        <span class="legend"><em>Detentor dos Direitos:</em> "app.copyright"</span>
+                    </li>
+                    <li class="oer-meta-item">
+                        <span class="legend"><em>Submetido por:</em>"app.submitters"></span>
+                    </li>
+                </ul>
+
+                <ul class="oer-meta meta-data-column-2">
+                    <li class="oer-meta-item">
+                        <span class="legend"><em>Classificação:</em> "app.classification"</span>
+                    </li>
+                    <li class="oer-meta-item">
+                        <span class="legend"><em>Língua:</em> "app.language"</span>
+                    </li>
+                    <li class="oer-meta-item">
+                        <span class="legend"><em>País de Origem:</em> "app.country"</span>
+                    </li>
+                    <li class="oer-meta-item">
+                        <span class="legend"><em>Origem:</em> "app.url"</span>
+                    </li>
+                </ul>
+            </div>
+
+            @*<div class="oer-images">
+                <% @app.screen_shots.each do |ss| %>
+                <%= image_tag ss.screen.url(:unique), alt: "Prévia", title: "Prévia", class: screen_shot_class(@app.screen_shots.length), size: "700x200" %>
+                <% end %>
+            </div>*@
+        </div>
+    </div>
+</div>
+
+@*<%# Botões de comentários. %>*@
+@*<% if can? :create, Comment %>*@
+<div class="content-section oer-comments reply-buttons">
+<ul class="reply-buttons-list">
+    <li>
+        <button class="button-primary button-big reply-status button-comment icon-comment-white_blue_32_34-before" title="Comentar sobre este aplicativo">Comentar</button>
+    </li>
+</ul>
+
+@* render comentarios comments/form" *@
+
+</div>
+
+@* Comentários comuns.*@
+
+<ol id="comments" class="status-list">
+    @* render comentarios common *@
+</ol>
