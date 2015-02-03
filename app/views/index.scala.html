@@ -1,15 +1,50 @@
 @(message: String)
 
-<head>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Redu Apps</title>
+
     <link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/bootstrap-redu.css")'>
     <script type="text/javascript" src="/assets/javascripts/jquery.js"></script>
     <script type="text/javascript" src="/assets/javascripts/bootstrap-redu.js"></script>
 </head>
 
 <body>
-
-@* IF DO LOGGED IN *@
+@* IF NOT LOGGED IN *@
 @views.html.shared._header_not_logged_in()
+@*ELSE *@
+@*@views.html.shared._nav_global()*@
+<div class="main-wrapper">
+
+
+    <div class="container">
+        <div class="row">
+            <div class="span16">
+                <div class="apps-portal-header">
+
+
+                    @* <div id="apps-portal-breadcrumb" class="breadcrumb-mini-wrapper">
+                        <%= render_navigation context: :breadcrumbs %>
+                    </div>*@
+
+                </div>
+                <div class="apps-portal-content content-body">
+                    @*CONTENT -- COLOCAR O PARAMETRO AQUI*@
+                    @views.html.app.show()
+                </div>
+                 <div class="breadcrumb-mini-wrapper">
+                    <br/>
+                    @*<%= render_navigation context: :breadcrumbs %>*@
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-pusher"></div>
+</div>
 
 @views.html.shared._footer()
+
 </body>
+
+</html>
