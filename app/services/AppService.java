@@ -24,6 +24,13 @@ public class AppService {
         return JPA.em().find(App.class, id);
     }
 
+    public static List<App> getAllApps () {
+        String q = "SELECT a FROM App a";
+        List<App> resultSet = JPA.em().createQuery(q, App.class)
+                .getResultList();
+        return resultSet;
+    }
+
     public static List<App> getAppsByAuthor (String author) {
 
         String q = "SELECT a FROM App a WHERE author = :author";

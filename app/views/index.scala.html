@@ -1,4 +1,4 @@
-@(message: String)
+@(apps: List[models.App], categories: List[models.Category])
 
 <head>
     <link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/bootstrap-redu.css")'>
@@ -10,6 +10,14 @@
 
 @* IF DO LOGGED IN *@
 @views.html.shared._header_not_logged_in()
+
+<div class="oer-apps-wrapper">
+    <div id="apps" class="apps-list">
+        @for(app <- apps){
+            @views.html.shared._app(app)
+        }
+    </div>
+</div>
 
 @views.html.shared._footer()
 </body>
