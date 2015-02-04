@@ -10,10 +10,10 @@ import models.App;
 import services.AppService;
 import services.CategoriesService;
 
-import views.html.*;
-
 import java.util.List;
 import java.util.Map;
+
+import views.html.*;
 
 import static play.data.Form.form;
 
@@ -27,7 +27,7 @@ public class AppController extends Controller {
 
     @Transactional
     public static Result newApp() {
-        return ok(views.html.newapp.render(categoriesService.getAllCategories()));
+        return ok(newapp.render(categoriesService.getAllCategories()));
     }
 
     @Transactional
@@ -87,7 +87,7 @@ public class AppController extends Controller {
             throwable.printStackTrace();
         }
 
-        return ok(views.html.apppage.render(app));
+        return ok(apppage.render(app));
     }
 
     @Transactional
@@ -98,7 +98,7 @@ public class AppController extends Controller {
         lastName = lastName == null ? "" : lastName;
         query = query == null ? "" : query;
         List<App> apps = appService.getAppsByNameLike(query, lastName);
-        return ok(views.html.applistcontent.render(apps));
+        return ok(applistcontent.render(apps));
     }
 
     @Transactional

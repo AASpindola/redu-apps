@@ -4999,6 +4999,13 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
   height: 0;
   position: absolute;
 }
+
+.apps-list .apps-list-item{
+    margin-left:0px !important;
+    width: 50% !important;
+
+}
+
 .tooltip.top .tooltip-arrow {
   bottom: 0;
   left: 50%;
