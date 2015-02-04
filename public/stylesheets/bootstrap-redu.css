@@ -215,7 +215,7 @@ body {
   display: block;
   height: 10px;
 }
-.cssgradients .content-body:before {
+ .content-body:before {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #ffffff), color-stop(100%, #f6f6f6));
   background-image: -webkit-linear-gradient(bottom, #ffffff, #f6f6f6);
   background-image: -moz-linear-gradient(bottom, #ffffff, #f6f6f6);
@@ -239,7 +239,7 @@ body {
   width: 100%;
   bottom: 0;
 }
-.cssgradients .content-body:after {
+ .content-body:after {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #f6f6f6), color-stop(100%, #ffffff));
   background-image: -webkit-linear-gradient(bottom, #f6f6f6, #ffffff);
   background-image: -moz-linear-gradient(bottom, #f6f6f6, #ffffff);
@@ -814,7 +814,7 @@ tr:hover td {
 .table-with-link tr:hover td:last-child {
   border-right: 1px solid #73c3e6;
 }
-.cssgradients .table-with-link tr:hover td {
+ .table-with-link tr:hover td {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dbeff7));
   background-image: -webkit-linear-gradient(#ffffff, #dbeff7);
   background-image: -moz-linear-gradient(#ffffff, #dbeff7);
@@ -838,7 +838,7 @@ tr:hover td {
 .table-with-link td:last-child {
   border-right: 1px solid #e6e6e6;
 }
-.cssgradients .table-with-link td {
+ .table-with-link td {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #f0f0f0));
   background-image: -webkit-linear-gradient(#ffffff, #f0f0f0);
   background-image: -moz-linear-gradient(#ffffff, #f0f0f0);
@@ -1033,9 +1033,9 @@ input[type="password"] {
   -o-transition: border linear 0.2s, box-shadow linear 0.2s;
   transition: border linear 0.2s, box-shadow linear 0.2s;
 }
-.cssgradients select, .cssgradients
-textarea, .cssgradients
-input[type="text"], .cssgradients
+ select, 
+textarea, 
+input[type="text"], 
 input[type="password"] {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(60.0%, #ffffff), color-stop(100%, #e6e6e6));
   background-image: -webkit-linear-gradient(bottom, #ffffff 60.0%, #e6e6e6);
@@ -1520,9 +1520,9 @@ textarea:-moz-placeholder {
 .form-search:hover .area-suffix {
   border-color: #73c3e6;
 }
-.cssgradients .control-option-list .form-search-filters-button, .cssgradients
-.control-option-list .area-suffix, .cssgradients
-.form-search .form-search-filters-button, .cssgradients
+ .control-option-list .form-search-filters-button, 
+.control-option-list .area-suffix, 
+.form-search .form-search-filters-button, 
 .form-search .area-suffix {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #f0f0f0), color-stop(100%, #ffffff));
   background-image: -webkit-linear-gradient(bottom, #f0f0f0, #ffffff);
@@ -1536,12 +1536,12 @@ textarea:-moz-placeholder {
 .form-search .area-suffix {
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlNmU2ZTYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
 }
-.cssgradients .open .control-option-list .form-search-filters-button,
-.control-option-list .form-search-filters-button .no-cssgradients.gt-ie8 .open, .cssgradients .open
+ .open .control-option-list .form-search-filters-button,
+.control-option-list .form-search-filters-button .no-cssgradients.gt-ie8 .open,  .open
 .control-option-list .area-suffix,
-.control-option-list .area-suffix .no-cssgradients.gt-ie8 .open, .cssgradients .open
+.control-option-list .area-suffix .no-cssgradients.gt-ie8 .open,  .open
 .form-search .form-search-filters-button,
-.form-search .form-search-filters-button .no-cssgradients.gt-ie8 .open, .cssgradients .open
+.form-search .form-search-filters-button .no-cssgradients.gt-ie8 .open,  .open
 .form-search .area-suffix,
 .form-search .area-suffix .no-cssgradients.gt-ie8 .open {
   background-image: none;
@@ -1691,7 +1691,7 @@ textarea:-moz-placeholder {
   position: relative;
   border-bottom: 1px solid #6d6e6f;
 }
-.cssgradients .header-not-logged-in {
+ .header-not-logged-in {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #e6e6e6), color-stop(100%, #ffffff));
   background-image: -webkit-linear-gradient(bottom, #e6e6e6, #ffffff);
   background-image: -moz-linear-gradient(bottom, #e6e6e6, #ffffff);
@@ -4396,7 +4396,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
   box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.5) inset;
   background-image: none;
 }
-.cssgradients .open > .button-default, .cssgradients .open > .filter, .cssgradients .open > .button-primary, .cssgradients .open > .button-success, .cssgradients .open > .button-danger, .cssgradients .open > .button-default:hover, .cssgradients .open > .filter:hover, .cssgradients .open > .button-primary:hover, .cssgradients .open > .button-success:hover, .cssgradients .open > .button-danger:hover, .cssgradients .button-default:active, .cssgradients .filter:active, .cssgradients .button-primary:active, .cssgradients .button-success:active, .cssgradients .button-danger:active {
+ .open > .button-default,  .open > .filter,  .open > .button-primary,  .open > .button-success,  .open > .button-danger,  .open > .button-default:hover,  .open > .filter:hover,  .open > .button-primary:hover,  .open > .button-success:hover,  .open > .button-danger:hover,  .button-default:active,  .filter:active,  .button-primary:active,  .button-success:active,  .button-danger:active {
   background-image: none;
 }
 
@@ -4418,14 +4418,14 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
   border-color: #cccccc;
   background-color: #f7f7f7;
 }
-.cssgradients .button-default, .cssgradients .filter {
+ .button-default,  .filter {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #e6e6e6), color-stop(40%, #f7f7f7));
   background-image: -webkit-linear-gradient(bottom, #e6e6e6, #f7f7f7 40%);
   background-image: -moz-linear-gradient(bottom, #e6e6e6, #f7f7f7 40%);
   background-image: -o-linear-gradient(bottom, #e6e6e6, #f7f7f7 40%);
   background-image: linear-gradient(bottom, #e6e6e6, #f7f7f7 40%);
 }
-.cssgradients .button-default:hover, .cssgradients .filter:hover {
+ .button-default:hover,  .filter:hover {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #dbeff7), color-stop(100%, #f7f7f7));
   background-image: -webkit-linear-gradient(bottom, #dbeff7, #f7f7f7);
   background-image: -moz-linear-gradient(bottom, #dbeff7, #f7f7f7);
@@ -4478,14 +4478,14 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
 .textshadow .button-primary {
   text-shadow: 0 -1px 0 #158ac4;
 }
-.cssgradients .button-primary {
+ .button-primary {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #158ac4), color-stop(60%, #73c3e6));
   background-image: -webkit-linear-gradient(bottom, #158ac4, #73c3e6 60%);
   background-image: -moz-linear-gradient(bottom, #158ac4, #73c3e6 60%);
   background-image: -o-linear-gradient(bottom, #158ac4, #73c3e6 60%);
   background-image: linear-gradient(bottom, #158ac4, #73c3e6 60%);
 }
-.cssgradients .button-primary:hover {
+ .button-primary:hover {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #158ac4), color-stop(100%, #73c3e6));
   background-image: -webkit-linear-gradient(bottom, #158ac4, #73c3e6);
   background-image: -moz-linear-gradient(bottom, #158ac4, #73c3e6);
@@ -4538,14 +4538,14 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
 .textshadow .button-success {
   text-shadow: 0 -1px 0 #61a080;
 }
-.cssgradients .button-success {
+ .button-success {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #5fc080), color-stop(100%, #abe385));
   background-image: -webkit-linear-gradient(bottom, #5fc080, #abe385);
   background-image: -moz-linear-gradient(bottom, #5fc080, #abe385);
   background-image: -o-linear-gradient(bottom, #5fc080, #abe385);
   background-image: linear-gradient(bottom, #5fc080, #abe385);
 }
-.cssgradients .button-success:hover {
+ .button-success:hover {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #61a080), color-stop(100%, #abe385));
   background-image: -webkit-linear-gradient(bottom, #61a080, #abe385);
   background-image: -moz-linear-gradient(bottom, #61a080, #abe385);
@@ -4598,14 +4598,14 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
 .textshadow .button-danger {
   text-shadow: 0 -1px 0 #c1272d;
 }
-.cssgradients .button-danger {
+ .button-danger {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #c1272d), color-stop(80%, #ff6d6d));
   background-image: -webkit-linear-gradient(bottom, #c1272d, #ff6d6d 80%);
   background-image: -moz-linear-gradient(bottom, #c1272d, #ff6d6d 80%);
   background-image: -o-linear-gradient(bottom, #c1272d, #ff6d6d 80%);
   background-image: linear-gradient(bottom, #c1272d, #ff6d6d 80%);
 }
-.cssgradients .button-danger:hover {
+ .button-danger:hover {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #c1272d), color-stop(100%, #ff6d6d));
   background-image: -webkit-linear-gradient(bottom, #c1272d, #ff6d6d);
   background-image: -moz-linear-gradient(bottom, #c1272d, #ff6d6d);
@@ -5233,7 +5233,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
   border-top: 1px solid white;
   border-bottom: 1px solid white;
 }
-.cssgradients .nav-global-inner {
+ .nav-global-inner {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f0f0f0), color-stop(50%, #ffffff), color-stop(100%, #f0f0f0));
   background-image: -webkit-linear-gradient(#f0f0f0, #ffffff, #f0f0f0);
   background-image: -moz-linear-gradient(#f0f0f0, #ffffff, #f0f0f0);
@@ -5294,7 +5294,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
   color: #4dadd6;
   text-decoration: none;
 }
-.cssgradients .nav-global-button:hover {
+ .nav-global-button:hover {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e6e6e6), color-stop(100%, #ffffff));
   background-image: -webkit-linear-gradient(top, #e6e6e6, #ffffff);
   background-image: -moz-linear-gradient(top, #e6e6e6, #ffffff);
@@ -5325,7 +5325,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
   -moz-box-shadow: 0 1px 0 #73c3e6 inset, 0 -1px 0 #4dadd6 inset;
   box-shadow: 0 1px 0 #73c3e6 inset, 0 -1px 0 #4dadd6 inset;
 }
-.cssgradients .nav-global-button-active {
+ .nav-global-button-active {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(40.0%, #73c3e6), color-stop(100%, #158ac4));
   background-image: -webkit-linear-gradient(bottom, #73c3e6 40.0%, #158ac4);
   background-image: -moz-linear-gradient(bottom, #73c3e6 40.0%, #158ac4);
@@ -5335,7 +5335,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
 .no-cssgradients.gt-ie8 .nav-global-button-active {
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzE1OGFjNCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjcwJSIgc3RvcC1jb2xvcj0iIzczYzNlNiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
 }
-.cssgradients .nav-global-button-active:hover {
+ .nav-global-button-active:hover {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #73c3e6), color-stop(40%, #158ac4));
   background-image: -webkit-linear-gradient(bottom, #73c3e6, #158ac4 40%);
   background-image: -moz-linear-gradient(bottom, #73c3e6, #158ac4 40%);
@@ -5396,7 +5396,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
   overflow: hidden;
   position: relative;
 }
-.cssgradients .nav-global-notify-notice:nth-child(odd) {
+ .nav-global-notify-notice:nth-child(odd) {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e6e6e6), color-stop(100%, #f0f0f0));
   background-image: -webkit-linear-gradient(#e6e6e6, #f0f0f0);
   background-image: -moz-linear-gradient(#e6e6e6, #f0f0f0);
@@ -5516,7 +5516,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
 .nav-local-item .inl-label + .inl-label, .nav-local-item .label-news + .inl-label, .nav-local-item .label-notify-me + .inl-label, .nav-local-item .label-online + .inl-label, .nav-local-item .label-doubts + .inl-label, .nav-local-item .inl-label + .label-news, .nav-local-item .label-news + .label-news, .nav-local-item .label-notify-me + .label-news, .nav-local-item .label-online + .label-news, .nav-local-item .label-doubts + .label-news, .nav-local-item .inl-label + .label-notify-me, .nav-local-item .label-news + .label-notify-me, .nav-local-item .label-notify-me + .label-notify-me, .nav-local-item .label-online + .label-notify-me, .nav-local-item .label-doubts + .label-notify-me, .nav-local-item .inl-label + .label-online, .nav-local-item .label-news + .label-online, .nav-local-item .label-notify-me + .label-online, .nav-local-item .label-online + .label-online, .nav-local-item .label-doubts + .label-online, .nav-local-item .inl-label + .label-doubts, .nav-local-item .label-news + .label-doubts, .nav-local-item .label-notify-me + .label-doubts, .nav-local-item .label-online + .label-doubts, .nav-local-item .label-doubts + .label-doubts {
   margin-left: 3px;
 }
-.cssgradients .nav-local-item:hover {
+ .nav-local-item:hover {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #f0f0f0), color-stop(100%, #ffffff));
   background-image: -webkit-linear-gradient(bottom, #f0f0f0, #ffffff);
   background-image: -moz-linear-gradient(bottom, #f0f0f0, #ffffff);
@@ -5546,7 +5546,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
   right: -11px;
   top: 0;
 }
-.cssgradients .nav-local-item-active {
+ .nav-local-item-active {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #158ac4), color-stop(40%, #73c3e6));
   background-image: -webkit-linear-gradient(bottom, #158ac4, #73c3e6 40%);
   background-image: -moz-linear-gradient(bottom, #158ac4, #73c3e6 40%);
@@ -5556,7 +5556,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
 .no-cssgradients.gt-ie8 .nav-local-item-active {
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSI2MCUiIHN0b3AtY29sb3I9IiM3M2MzZTYiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMTU4YWM0IiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
 }
-.cssgradients .nav-local-item-active:hover {
+ .nav-local-item-active:hover {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #158ac4), color-stop(100%, #73c3e6));
   background-image: -webkit-linear-gradient(bottom, #158ac4, #73c3e6);
   background-image: -moz-linear-gradient(bottom, #158ac4, #73c3e6);
@@ -5712,7 +5712,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
   height: 30px;
   border: 1px solid #cccccc;
 }
-.cssgradients .tab {
+ .tab {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #e6e6e6), color-stop(20%, #eeeeee), color-stop(100%, #f7f7f7));
   background-image: -webkit-linear-gradient(bottom, #e6e6e6, #eeeeee 20%, #f7f7f7);
   background-image: -moz-linear-gradient(bottom, #e6e6e6, #eeeeee 20%, #f7f7f7);
@@ -5726,7 +5726,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
   border-color: #73c3e6;
   z-index: 2;
 }
-.cssgradients .tab:hover {
+ .tab:hover {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #dbeff7), color-stop(100%, #f7f7f7));
   background-image: -webkit-linear-gradient(bottom, #dbeff7, #f7f7f7);
   background-image: -moz-linear-gradient(bottom, #dbeff7, #f7f7f7);
@@ -5956,7 +5956,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
 .progress-bar-total {
   overflow: hidden;
 }
-.cssgradients .progress-bar-total {
+ .progress-bar-total {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #cccccc), color-stop(50%, #ffffff), color-stop(100%, #cccccc));
   background-image: -webkit-linear-gradient(#cccccc, #ffffff, #cccccc);
   background-image: -moz-linear-gradient(#cccccc, #ffffff, #cccccc);
@@ -5971,7 +5971,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
   float: left;
   height: 100%;
 }
-.cssgradients .progress-bar-completed {
+ .progress-bar-completed {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #5fc080), color-stop(50%, #abe385), color-stop(100%, #5fc080));
   background-image: -webkit-linear-gradient(#5fc080, #abe385, #5fc080);
   background-image: -moz-linear-gradient(#5fc080, #abe385, #5fc080);
@@ -6119,7 +6119,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
   border-color: #73c3e6;
   z-index: 1000;
 }
-.cssgradients .header-item {
+ .header-item {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #e6e6e6), color-stop(100%, #ffffff));
   background-image: -webkit-linear-gradient(bottom, #e6e6e6, #ffffff);
   background-image: -moz-linear-gradient(bottom, #e6e6e6, #ffffff);
@@ -6366,7 +6366,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
 .no-cssgradients.gt-ie8 .courses-lists .course-item .course-space:hover {
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSI2MCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZTZlNmU2IiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
 }
-.cssgradients .courses-lists .course-item .course-space:hover {
+ .courses-lists .course-item .course-space:hover {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(60%, #ffffff), color-stop(100%, #f0f0f0));
   background-image: -webkit-linear-gradient(#ffffff 60%, #f0f0f0);
   background-image: -moz-linear-gradient(#ffffff 60%, #f0f0f0);
@@ -6424,7 +6424,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
   -moz-box-shadow: 1px 0 0 white inset, 0 1px 0 white inset, -1px 0 0 white inset;
   box-shadow: 1px 0 0 white inset, 0 1px 0 white inset, -1px 0 0 white inset;
 }
-.cssgradients .list-course-space-gradient-top {
+ .list-course-space-gradient-top {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f0f0f0), color-stop(90%, #ffffff));
   background-image: -webkit-linear-gradient(top, #f0f0f0, #ffffff 90%);
   background-image: -moz-linear-gradient(top, #f0f0f0, #ffffff 90%);
@@ -6434,7 +6434,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
 .no-cssgradients.gt-ie8 .list-course-space-gradient-top {
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2YwZjBmMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjkwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
 }
-.cssgradients .list-course-space-item:hover .list-course-space-gradient-top {
+ .list-course-space-item:hover .list-course-space-gradient-top {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dbeff7), color-stop(90%, #ffffff));
   background-image: -webkit-linear-gradient(top, #dbeff7, #ffffff 90%);
   background-image: -moz-linear-gradient(top, #dbeff7, #ffffff 90%);
@@ -6450,7 +6450,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
   -moz-box-shadow: 1px 0 0 white inset, -1px 0 0 white inset;
   box-shadow: 1px 0 0 white inset, -1px 0 0 white inset;
 }
-.cssgradients .list-course-space-gradient-bottom {
+ .list-course-space-gradient-bottom {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #f0f0f0), color-stop(90%, #ffffff));
   background-image: -webkit-linear-gradient(bottom, #f0f0f0, #ffffff 90%);
   background-image: -moz-linear-gradient(bottom, #f0f0f0, #ffffff 90%);
@@ -6460,7 +6460,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
 .no-cssgradients.gt-ie8 .list-course-space-gradient-bottom {
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZjBmMGYwIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
 }
-.cssgradients .list-course-space-item:hover .list-course-space-gradient-bottom {
+ .list-course-space-item:hover .list-course-space-gradient-bottom {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #dbeff7), color-stop(90%, #ffffff));
   background-image: -webkit-linear-gradient(bottom, #dbeff7, #ffffff 90%);
   background-image: -moz-linear-gradient(bottom, #dbeff7, #ffffff 90%);
@@ -6580,7 +6580,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
 .list-button-item > * {
   vertical-align: middle;
 }
-.cssgradients .list-button-item {
+ .list-button-item {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #e6e6e6), color-stop(20%, #eeeeee), color-stop(100%, #f7f7f7));
   background-image: -webkit-linear-gradient(bottom, #e6e6e6 0%, #eeeeee 20%, #f7f7f7 100%);
   background-image: -moz-linear-gradient(bottom, #e6e6e6 0%, #eeeeee 20%, #f7f7f7 100%);
@@ -6596,7 +6596,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
 .list-button-item:hover a {
   color: #158ac4;
 }
-.cssgradients .list-button-item:hover {
+ .list-button-item:hover {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #dbeff7), color-stop(20%, #e9f3f7), color-stop(100%, #f7f7f7));
   background-image: -webkit-linear-gradient(bottom, #dbeff7 0%, #e9f3f7 20%, #f7f7f7 100%);
   background-image: -moz-linear-gradient(bottom, #dbeff7 0%, #e9f3f7 20%, #f7f7f7 100%);
@@ -6768,7 +6768,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
   margin-right: 10px;
   padding: 6px 10px;
 }
-.cssgradients .list-mix-inner {
+ .list-mix-inner {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #e6e6e6), color-stop(20%, #eeeeee), color-stop(100%, #f7f7f7));
   background-image: -webkit-linear-gradient(bottom, #e6e6e6 0%, #eeeeee 20%, #f7f7f7 100%);
   background-image: -moz-linear-gradient(bottom, #e6e6e6 0%, #eeeeee 20%, #f7f7f7 100%);
@@ -6901,7 +6901,7 @@ hr {
   top: -8px;
   border-bottom: 1px solid #e6e6e6;
 }
-.cssgradients .list-separator:before {
+ .list-separator:before {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #f7f7f7), color-stop(100%, #ffffff));
   background-image: -webkit-linear-gradient(bottom, #f7f7f7, #ffffff);
   background-image: -moz-linear-gradient(bottom, #f7f7f7, #ffffff);
@@ -6919,7 +6919,7 @@ hr {
   bottom: 8px;
   border-top: 1px solid white;
 }
-.cssgradients .list-separator:after {
+ .list-separator:after {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #ffffff), color-stop(100%, #f7f7f7));
   background-image: -webkit-linear-gradient(bottom, #ffffff, #f7f7f7);
   background-image: -moz-linear-gradient(bottom, #ffffff, #f7f7f7);
@@ -7116,12 +7116,13 @@ hr {
   -moz-box-shadow: 0 1px 0 #cccccc;
   box-shadow: 0 1px 0 #cccccc;
 }
-.cssgradients .general-list-item:hover {
-  background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #e6e6e6), color-stop(100%, #f7f7f7));
-  background-image: -webkit-linear-gradient(bottom, #e6e6e6, #f7f7f7);
-  background-image: -moz-linear-gradient(bottom, #e6e6e6, #f7f7f7);
-  background-image: -o-linear-gradient(bottom, #e6e6e6, #f7f7f7);
-  background-image: linear-gradient(bottom, #e6e6e6, #f7f7f7);
+
+.general-list-item:hover {
+    background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #e6e6e6), color-stop(100%, #f7f7f7));
+    background-image: -webkit-linear-gradient(bottom, #e6e6e6, #f7f7f7);
+    background-image: -moz-linear-gradient(bottom, #e6e6e6, #f7f7f7);
+    background-image: -o-linear-gradient(bottom, #e6e6e6, #f7f7f7);
+    background-image: linear-gradient(bottom, #e6e6e6, #f7f7f7);
 }
 .general-list-item:hover,
 .general-list-item:hover .legend {
@@ -7318,7 +7319,7 @@ hr {
   -moz-box-shadow: 0 1px 0 #cccccc;
   box-shadow: 0 1px 0 #cccccc;
 }
-.cssgradients .course-n-space-search-list-item {
+ .course-n-space-search-list-item {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #e6e6e6), color-stop(100%, #f7f7f7));
   background-image: -webkit-linear-gradient(bottom, #e6e6e6, #f7f7f7);
   background-image: -moz-linear-gradient(bottom, #e6e6e6, #f7f7f7);
@@ -8278,4 +8279,9 @@ hr {
 #main-container{
      min-height:100%;
      position:relative;
+     padding-bottom:180px;
+}
+
+.new-app-form{
+    padding:100px;
 }

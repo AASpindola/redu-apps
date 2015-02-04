@@ -1,7 +1,7 @@
 @(categories: List[models.Category])
 
 @main("New App"){
-    <form method="POST" action="@routes.AppController.saveNewApp">
+    <form class="new-app-form" method="POST" action="@routes.AppController.saveNewApp">
 
         <div id="category-content">
             <select name="category">
