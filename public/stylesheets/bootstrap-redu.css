@@ -8285,3 +8285,13 @@ hr {
 .new-app-form{
     padding:100px;
 }
+
+
+.main-wrapper {
+  min-height: 100%;
+  margin: 0 auto (- 180px);
+}
+
+.footer-pusher {
+    height: 180px;
+}

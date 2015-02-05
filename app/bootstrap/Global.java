@@ -15,21 +15,6 @@ public class Global extends GlobalSettings {
     @Override
     public void onStart(Application application) {
         super.onStart(application);
-        App app = new App();
-        app.appName = "meu primeiro app";
-        app.author = "artur";
-
-        try {
-            JPA.withTransaction(new F.Function0<Boolean>() {
-                @Override
-                public Boolean apply() throws Throwable {
-                    JPA.em().persist(app);
-                    JPA.em().getTransaction().commit();
-                    return null;
-                }
-            });
-        } catch (Throwable throwable) {
-            Logger.debug("entrada duplicada");
-        }
+        SE.init();
     }
 }

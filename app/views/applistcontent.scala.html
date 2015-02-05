@@ -12,27 +12,30 @@
         <div class="general-list-item-body">
             <div class="general-list-item-column">
                 <a href="@routes.AppController.appPage(app.appName)" title="@app.appName">
-                    <img src='@routes.Assets.at("images/missing_apps_medium.png")' alt="@app.appName" title="@app.appName" height="90" width="90" >
+                    @if(app.thumbnail == null||app.thumbnail == ""||app.thumbnail=="null"){
+                        <img src='@routes.Assets.at("images/missing_apps_medium.png")' alt="@app.appName" title="@app.appName" height="90" width="90" >
+                    }else{
+                        <img src='@app.thumbnail' alt="@app.appName" title="@app.appName" height="90" width="90" >
+                    }
                 </a>
             </div>
             <div class="general-list-item-column">
                 <h4 class="general-list-item-title">
                     <a href="@routes.AppController.appPage(app.appName)" title="@app.appName" class="general-list-item-title-link text-truncate">@app.appName</a>
                 </h4>
-                <span class="legend">Categoria do app</span>
-                <span class="legend" title="@app.author"><em>Autor:</em> @app.author </span>
-                <span class="legend"><em>Língua:</em> @app.language</span>
+                @if(app.level != "none"){
+                    <span class="legend">@app.level</span>
+                }
+                @if(app.area != "none"){
+                    <span class="legend">@app.area</span>
+                }
+                @if(app.author != null && app.author != "" && app.author != "null"){
+                    <span class="legend" title="@app.author"><em>Autor:</em> @app.author </span>
+                }
+                @if(app.language != null && app.language != "" && app.language != "null"){
+                    <span class="legend"><em>Língua:</em> @app.language</span>
+                }
 
-                <!--
-                <% has_subarea = Category.get_by_kind(app, 'Subárea').length > 0 %>
-                <% if Category.get_by_kind(app, 'Área').length > 0 %>
-
-            <span class="legend">
-              <em>Área:</em> <%= names_for(Category.get_by_kind(app, 'Área')) %><%= ':' if has_subarea %>
-              <%= names_for(Category.get_by_kind(app, 'Subárea')) if has_subarea %>
-            </span>
-                <% end %>
-                 -->
             </div>
         </div>
         <div class="general-list-item-footer">
