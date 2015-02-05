@@ -1,5 +1,6 @@
 package controllers;
 
+import bootstrap.SE;
 import play.data.DynamicForm;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
@@ -13,10 +14,12 @@ import bootstrap.Constants;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
 import services.CloudinaryService;
+import services.ElasticSearchServices;
 import views.html.*;
 
 import static play.data.Form.form;
@@ -27,6 +30,7 @@ import static play.data.Form.form;
 public class AppController extends Controller {
 
     public static AppService appService = AppService.getInstance();
+    public static ElasticSearchServices elasticSearchServices = ElasticSearchServices.getInstance();
 
     @Transactional
     public static Result newApp() {
@@ -63,6 +67,8 @@ public class AppController extends Controller {
         app.views = 0;
         app.favouriteCount = 0;
 
+        app.comments = new HashSet<>();
+
         //app.screenshots =
         //app.submitters = pegar o user logado
 
@@ -89,6 +95,12 @@ public class AppController extends Controller {
             throwable.printStackTrace();
         }
 
+        // Indexando no elasticsearch
+        SE.client.prepareIndex("reduapps", "app", app.appName)
+                .setSource(app.buildXContent())
+                .execute()
+                .actionGet();
+
         return ok(app.appName + " adicionado com sucesso!");
     }
 
@@ -111,6 +123,8 @@ public class AppController extends Controller {
             throwable.printStackTrace();
         }
 
+        elasticSearchServices.updateViewsCount(app.appName, app.views);
+
         return ok(apppage.render(app));
     }
 
@@ -121,12 +135,9 @@ public class AppController extends Controller {
         String lastName = params.get("l");
         lastName = lastName == null ? "" : lastName;
         query = query == null ? "" : query;
-        List<App> apps = appService.getAppsByNameLike(query, lastName);
-        return ok(applistcontent.render(apps));
-    }
+        //List<App> apps = appService.getAppsByNameLike(query, lastName);
+        List<App> apps = elasticSearchServices.searchApps(query);
 
-    @Transactional
-    public static Result searchAppsByCategory() {
-        return ok();
+        return ok(applistcontent.render(apps));
     }
 }

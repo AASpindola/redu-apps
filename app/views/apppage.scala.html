@@ -11,7 +11,7 @@
             <!-- Coluna da esquerda. -->
             <div class="oer-left-sidebar">
                 <!-- Thumbnail -->
-                @if(app.thumbnail == null||app.thumbnail == ""){
+                @if(app.thumbnail == null||app.thumbnail == ""||app.thumbnail=="null"){
                     <img src='@routes.Assets.at("images/missing_apps_large.png")' alt="@app.appName" title="@app.appName" class="oer-thumbnail" width="160" height="160" />
                 }else{
                     <img src='@app.thumbnail' alt="@app.appName" title="@app.appName" class="oer-thumbnail" width="160" height="160" />
