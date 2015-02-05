@@ -1,7 +1,6 @@
 package services;
 
 import models.App;
-import models.Category;
 import play.db.jpa.JPA;
 
 import java.util.List;
@@ -58,10 +57,6 @@ public class AppService {
                     .getResultList();
             return resultSet.size() >12 ? resultSet.subList(0, 12) : resultSet;
         }
-    }
-
-    public static List<App> getAppsByCategory (Category cat){
-        return null;
     }
 
 }

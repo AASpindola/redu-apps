@@ -23,7 +23,6 @@ public class User {
     public Set<Comment> comments;
     @OneToMany
     public Set<Answer> answers;
-
-    @ManyToMany(mappedBy = "users")
+    @OneToMany
     public Set<App> apps;
 }

@@ -12,14 +12,19 @@
         <div class="general-list-item-body">
             <div class="general-list-item-column">
                 <a href="@routes.AppController.appPage(app.appName)" title="@app.appName">
-                    <img src='@routes.Assets.at("images/missing_apps_medium.png")' alt="@app.appName" title="@app.appName" height="90" width="90" >
+                    @if(app.thumbnail == null||app.thumbnail == ""){
+                        <img src='@routes.Assets.at("images/missing_apps_medium.png")' alt="@app.appName" title="@app.appName" height="90" width="90" >
+                    }else{
+                        <img src='@app.thumbnail' alt="@app.appName" title="@app.appName" height="90" width="90" >
+                    }
                 </a>
             </div>
             <div class="general-list-item-column">
                 <h4 class="general-list-item-title">
                     <a href="@routes.AppController.appPage(app.appName)" title="@app.appName" class="general-list-item-title-link text-truncate">@app.appName</a>
                 </h4>
-                <span class="legend">Categoria do app</span>
+                <span class="legend">@app.level</span>
+                <span class="legend">@app.area</span>
                 <span class="legend" title="@app.author"><em>Autor:</em> @app.author </span>
                 <span class="legend"><em>Língua:</em> @app.language</span>
 

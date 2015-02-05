@@ -1,63 +1,73 @@
-@(categories: List[models.Category])
+@(levels: List[String], areas: List[String], app: models.App)
 
 @main("New App"){
-    <form method="POST" action="@routes.AppController.saveNewApp">
+    <form method="POST" action="@routes.AppController.saveNewApp" enctype="multipart/form-data">
 
-        <div id="category-content">
-            <select name="category">
-                <option value="none">Selecione uma Categoria</option>
-                @for(cat <- categories) {
-                <option value="@cat.catName">@cat.catName</option>
-                }
-            </select>
-        </div>
+        <select name="app-level">
+            <option value="none">Selecione um Nível</option>
+            @for(lv <- levels) {
+            <option value="@lv">@lv</option>
+            }
+        </select><br/><br/>
 
-
-        <input id="addCategory" type="button" value="+Category"/> <br/>
+        <select name="app-area">
+            <option value="none">Selecione uma Área</option>
+            @for(area <- areas) {
+            <option value="@area">@area</option>
+            }
+        </select><br/><br/>
 
         <label>Name:</label>
 
-        <input type='text'  name='app-name' value=''/> <br/>
+        <input type='text'  name='app-name' value=''/> <br/><br/>
 
         <label>thumbnail:</label>
 
-        <input type='text'  name='app-thumbnail' value=''/> <br/>
+        <input type='file'  name='app-thumbnail' value=''/> <br/><br/>
 
         <label>url:</label>
 
-        <input type='text'  name='app-url' value=''/> <br/>
+        <input type='text'  name='app-url' value=''/> <br/><br/>
 
         <label>language:</label>
 
-        <input type='text'  name='app-language' value=''/> <br/>
-
-        <label>coreUrl:</label>
-
-        <input type='text'  name='app-coreUrl' value=''/> <br/>
+        <input type='text'  name='app-language' value=''/> <br/><br/>
 
         <label>objective:</label>
 
-        <input type='text'  name='app-objective' value=''/> <br/>
+        <input type='text'  name='app-objective' value=''/> <br/><br/>
 
         <label>synopsis:</label>
 
-        <input type='text'  name='app-synopsis' value=''/> <br/>
+        <input type='text'  name='app-synopsis' value=''/> <br/><br/>
 
         <label>description:</label>
 
-        <input type='text'  name='app-description' value=''/> <br/>
+        <input type='text'  name='app-description' value=''/> <br/><br/>
 
         <label>publishers:</label>
 
-        <input type='text'  name='app-publishers' value=''/> <br/>
+        <input type='text'  name='app-publishers' value=''/> <br/><br/>
 
         <label>submitters:</label>
 
-        <input type='text'  name='app-submitters' value=''/> <br/>
+        <input type='text'  name='app-submitters' value=''/> <br/><br/>
 
         <label>copyright:</label>
 
         <input type='text'  name='app-copyright' value=''/> <br/> <br/>
+
+        <label>country:</label>
+
+        <input type='text'  name='app-country' value=''/> <br/> <br/>
+
+        <label>author:</label>
+
+        <input type='text'  name='app-author' value=''/> <br/> <br/>
+
+        <label>classification:</label>
+
+        <input type='text'  name='app-classification' value=''/> <br/> <br/>
 
         <input id="buttonForm" type="submit" value="Submit">
     </form>
