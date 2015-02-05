@@ -15,10 +15,12 @@ public class App {
     public String appName;
     public String thumbnail;
     public int views;
+    public int favouriteCount;
+    public double rating;
+    public int ratingCount;
     public String url;
     public String author;
     public String language;
-    public String coreUrl;
     @Lob
     public String objective;
     @Lob
@@ -26,17 +28,14 @@ public class App {
     @Lob
     public String description;
     public String publishers;
-    public String submitters;
     public String copyright;
     public String country;
+    public String[] screenshots;
+    public String level;
+    public String area;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="app_category", joinColumns = {@JoinColumn(name="appName")}, inverseJoinColumns = {@JoinColumn(name="catName")})
-    public Set<Category> categories;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="app_user", joinColumns = {@JoinColumn(name="appName")}, inverseJoinColumns = {@JoinColumn(name="email")})
-    public Set<User> users;
+    @ManyToOne
+    public User submitter;
 
     @OneToMany
     public Set<Comment> comments;
