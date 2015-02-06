@@ -1,4 +1,4 @@
-@(levels: List[String], areas: List[String], app: models.App)
+@(levels: List[String], areas: List[String])
 
 @main("New App"){
     <form method="POST" action="@routes.AppController.saveNewApp" enctype="multipart/form-data">
