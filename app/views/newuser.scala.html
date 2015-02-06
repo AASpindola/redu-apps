@@ -1,4 +1,4 @@
-<form method="POST" class="new-app-form" action="@routes.AppController.register" enctype="multipart/form-data">
+<form method="POST" class="new-app-form" action="@routes.AppController.newUser" enctype="multipart/form-data">
 
 
 
@@ -16,7 +16,7 @@
 
     <label>Last Name:</label>
 
-    <input type='file'  name='user-lastname' value=''/> <br/><br/>
+    <input type='text'  name='user-lastname' value=''/> <br/><br/>
 
     <label>Role:</label>
 
@@ -24,7 +24,7 @@
 
     <label>Profile Picture:</label>
 
-    <input type='text'  name='user-picture' value=''/> <br/><br/>
+    <input type='file'  name='user-picture' value=''/> <br/><br/>
 
     <label>Password:</label>
 
@@ -32,5 +32,3 @@
 
     <input id="buttonForm" type="submit" value="Submit">
 </form>
-
-}

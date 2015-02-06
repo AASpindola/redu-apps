@@ -38,6 +38,10 @@ public class AppController extends Controller {
         return ok(newapp.render(Arrays.asList(Constants.levels), Arrays.asList(Constants.area), null));
     }
 
+    public static Result newUser() {
+        return ok(newuser.render());
+    }
+
     @Transactional
     public static Result saveNewApp() {
 
@@ -106,7 +110,7 @@ public class AppController extends Controller {
     }
 
     @Transactional
-    public static Result register() {
+    public static Result saveNewUser() {
 
         // O app já é verificado no frontend
 
