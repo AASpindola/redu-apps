@@ -1,6 +1,7 @@
 package controllers;
 
 import bootstrap.SE;
+import models.User;
 import play.data.DynamicForm;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
@@ -102,6 +103,49 @@ public class AppController extends Controller {
                 .actionGet();
 
         return ok(app.appName + " adicionado com sucesso!");
+    }
+
+    @Transactional
+    public static Result register() {
+
+        // O app já é verificado no frontend
+
+        Http.MultipartFormData body = request().body().asMultipartFormData();
+        Map<String, String[]> appQuery_data = body.asFormUrlEncoded();
+        CloudinaryService cloudinaryService = CloudinaryService.getInstance();
+
+        User user = new User(appQuery_data.get("user-email")[0], appQuery_data.get("user-login")[0], appQuery_data.get("user-firstname")[0], appQuery_data.get("user-lastname")[0], appQuery_data.get("user-role")[0], appQuery_data.get("user-picture")[0], appQuery_data.get("user-password")[0]);
+
+        Http.MultipartFormData.FilePart thumbnail = body.getFile("app-thumbnail");
+        if (thumbnail != null && thumbnail.getFile() != null) {
+            try {
+                String thumbUrl = cloudinaryService.upload(thumbnail.getFile());
+                user.thumbnail = thumbUrl;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            JPA.withTransaction(new F.Function0<Boolean>() {
+                @Override
+                public Boolean apply() throws Throwable {
+                    JPA.em().persist(user);
+                    JPA.em().getTransaction().commit();
+                    return null;
+                }
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+
+        // Indexando no elasticsearch
+//        SE.client.prepareIndex("reduapps", "user", user.login)
+//                .setSource(user.buildXContent())
+//                .execute()
+//                .actionGet();
+
+        return ok(user.getLogin() + " adicionado com sucesso!");
     }
 
     @Transactional

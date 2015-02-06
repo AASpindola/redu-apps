@@ -3,14 +3,15 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
+GET         /                         controllers.Application.index()
 
 # app related endpoints
-GET     /newapp                     controllers.AppController.newApp()
-POST    /newapp                     controllers.AppController.saveNewApp()
-GET     /app/:name                  controllers.AppController.appPage(name)
-GET     /appsbynameresults          controllers.AppController.searchAppsByName()
+GET         /newapp                   controllers.AppController.newApp()
+POST        /newapp                   controllers.AppController.saveNewApp()
+POST        /regoster                 controllers.AppController.register()
+GET         /app/:name                controllers.AppController.appPage(name)
+GET         /appsbynameresults        controllers.AppController.searchAppsByName()
 
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET         /assets/*file             controllers.Assets.at(path="/public", file)
