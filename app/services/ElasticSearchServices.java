@@ -35,6 +35,7 @@ public class ElasticSearchServices {
                 .addSort("views", SortOrder.DESC)
                 .addSort("appName", SortOrder.ASC);
 
+
         if (text != null && !text.equals("")) {
             builder.setQuery(QueryBuilders.prefixQuery("appName", text));
             //builder.setQuery(QueryBuilders.moreLikeThisQuery("author", "appName", "objective", "synopsis", "description", "area", "level").likeText(text));
