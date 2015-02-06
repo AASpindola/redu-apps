@@ -13,9 +13,7 @@ dist
 /.project
 /RUNNING_PID
 /.settings
-<<<<<<< HEAD
 application.conf
-=======
 conf/META-INF
 conf/application.conf
->>>>>>> bb51eef5d8c2b5168278333f8815a35a5ab1de8f
+/.DS_Store
