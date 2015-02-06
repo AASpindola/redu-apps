@@ -1,0 +1,44 @@
+<!--
+Comentários comuns.
+
+Variáveis:
+common_comment: o comentário.
+-->
+@*
+@(comment: models.Comment)
+<li id="comment-@comment.commentId">
+    <hr class="list-separator">
+    <div class="status without-context">
+        <div class="subject">
+            <a href="link_to_user_who_posted" class="author-thumbnail">
+                <img src='@routes.Assets.at("images/missing_users_medium.png")' alt="@comment.author.name" title="@comment.author.name" size="64x64"/>
+            </a>
+
+            <div class="subject-info">
+                <a href=link_to_user_who_posted" class="link-name">@comment.author.name
+                    <span class="action">comentou sobre este aplicativo:</span>
+                    <span class="date legend"> @comment.createdAt </span>
+                </a>
+            </div>
+        </div>
+        <div class="subject-content">
+            <div class="status-content status-tab tab-left">
+                @comment.body
+            </div>
+
+            @views.html.comment._response()
+
+            <!-- IF CAN COMMENT -->
+            <ul class="actions">
+                <li class="reply-status icon-reply-gray_8_10-before">
+                    <span class="link-fake link-secondary">Responder</span>
+                </li>
+            </ul>
+
+            @views.html.comment._response_form()
+            <!-- END IF CAN COMMENT -->
+        </div>
+    </div>
+</li>
+
+*@

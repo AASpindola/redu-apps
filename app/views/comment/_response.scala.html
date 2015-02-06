@@ -1,0 +1,25 @@
+
+@*<!--<%# Respostas ao comentário %>-->
+@(comment: models.Comment)
+
+
+<!-- IF HAS ANSWERS -->
+<ol id="comments-for-@comment.commentId" class="comments responses status-tab tab-left">
+    <li class="show-responses">
+        <span class="legend last-responses">Visualizando as últimas respostas...</span>
+        <hr>
+    </li>
+
+    <!-- SHOW EVERY ANSWER -->
+    @views.html.comment._answer()
+    <!-- END SHOW EVERY ANSWER -->
+
+    <li class="show-responses">
+        <div class="show-more">
+            <hr>
+                <span class="see-more link-fake link-secondary">Mostrar todas as respostas</span>
+            </div>
+    </li>
+</ol>
+
+*@

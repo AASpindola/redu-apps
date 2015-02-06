@@ -1,0 +1,27 @@
+<!--
+Renderiza o balão cinza com a área de texto de responder.
+
+Variáveis locais:
+klass: classe adicional a ser adicionada no wrapper.
+array_for_url: array com os objetos necessários para montar a url
+(o último sempre será o objeto do form).
+
+
+precisa saber o id do comment, o id do usuario
+%>-->
+
+<form method="POST" action="" enctype="multipart/form-data" class="status-tab status-list create-status tab-left">
+    <input type="hidden" name="kind" value="Common">
+    <input type="hidden" name="author" value="current_user.id">
+    <input type="hidden" name="comment" value="comment.commentId">
+    <textarea name="body" rows="6"></textarea>
+    <ul class="status-buttons">
+        <li>
+            <button type="button" class="button-default cancel">Cancelar</button>
+        </li>
+        <li>
+            <input type="submit" value="Enviar" class="button-primary"/>
+        </li>
+    </ul>
+</form>
+
