@@ -13,5 +13,10 @@ dist
 /.project
 /RUNNING_PID
 /.settings
+application.conf
 conf/META-INF
 conf/application.conf
+/.DS_Store
+projectFilesBackup
+projectFilesBackup1
+

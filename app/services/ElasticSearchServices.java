@@ -32,7 +32,9 @@ public class ElasticSearchServices {
     public static List<App> searchApps(String text) {
         SearchRequestBuilder builder = SE.client.prepareSearch("reduapps")
                 .setTypes("app")
-                .addSort("views", SortOrder.DESC);
+                .addSort("views", SortOrder.DESC)
+                .addSort("appName", SortOrder.ASC);
+
 
         if (text != null && !text.equals("")) {
             builder.setQuery(QueryBuilders.prefixQuery("appName", text));

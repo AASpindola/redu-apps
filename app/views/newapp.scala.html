@@ -1,8 +1,6 @@
-@(levels: List[String], areas: List[String], app: models.App)
-
+@(levels: List[String], areas: List[String])
 
     <form method="POST" class="new-app-form" action="@routes.AppController.saveNewApp" enctype="multipart/form-data">
-
         <select name="app-level">
             <option value="none">Selecione um Nível</option>
             @for(lv <- levels) {

@@ -19,6 +19,7 @@ public class User {
     public String lastName;
     public String role;
     public String thumbnail;
+
     private String password;
 
     @OneToMany
@@ -27,6 +28,7 @@ public class User {
     public Set<Answer> answers;
     @OneToMany
     public Set<App> apps;
+
 
     public String getEmail() {
         return email;

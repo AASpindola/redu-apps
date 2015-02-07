@@ -5,21 +5,20 @@ Variáveis:
 answer: a resposta.
 total: a quantidade total de respostas.
 -->
-@* @(answer: models.Answer)
-<li id="comment-@answer.answerId">
+
+<li id="comment-answer.answerId">
     <hr>
     <div class="response">
 
         <a href="link_to_answer_author" class="author-thumbnail">
-            <img src='@routes.Assets.at("images/missing_users_small.png")' alt="@comment.author.name" title="@comment.author.name" size="32x32"/>
+            <img src='@routes.Assets.at("images/missing_users_small.png")' alt="comment.author.name" title="comment.author.name" size="32x32"/>
         </a>
-        <a href=link_to_user_who_posted" class="link-name">@answer.author.name
+        <a href=link_to_user_who_posted" class="link-name">answer.author.name
              <span class="action">respondeu: </span>
              <span class="date legend"> answer.created_at </span>
-
-            <div class="status-content">
-               @answer.body
-            </div>
         </a>
+        <div class="status-content">
+            answer.body
+        </div>
     </div>
-</li>*@
+</li>
