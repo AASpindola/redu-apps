@@ -145,7 +145,7 @@
             </li>
         </ul>
 
-        <div id="comment-form">
+        <div id="@app.appName" class="comment-form">
            @comment._comment_form()
         </div>
 
@@ -163,8 +163,8 @@
 
         function body_load()
         {
-            toggle_visibility('comment-form');
-            toggle_visibility('comment-form');
+            toggle_visibility('@app.appName');
+            toggle_visibility('@app.appName');
             toggle_visibility('response-form');
             toggle_visibility('response-form');
         }
