@@ -3,6 +3,7 @@ package controllers;
 import bootstrap.SE;
 import models.User;
 import play.data.DynamicForm;
+import play.data.Form;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.libs.F;
@@ -126,7 +127,7 @@ public class AppController extends Controller {
         Map<String, String[]> appQuery_data = body.asFormUrlEncoded();
         CloudinaryService cloudinaryService = CloudinaryService.getInstance();
 
-        User user = new User(appQuery_data.get("user-email")[0], appQuery_data.get("user-login")[0], appQuery_data.get("user-firstname")[0], appQuery_data.get("user-lastname")[0], appQuery_data.get("user-role")[0], appQuery_data.get("user-picture")[0], appQuery_data.get("user-password")[0]);
+        User user = new User(appQuery_data.get("user-email")[0], appQuery_data.get("user-firstname")[0], appQuery_data.get("user-lastname")[0], appQuery_data.get("user-role")[0], appQuery_data.get("user-password")[0]);
 
         Http.MultipartFormData.FilePart thumbnail = body.getFile("app-thumbnail");
         if (thumbnail != null && thumbnail.getFile() != null) {
@@ -157,7 +158,7 @@ public class AppController extends Controller {
 //                .execute()
 //                .actionGet();
 
-        return ok(user.getLogin() + " adicionado com sucesso!");
+        return ok(user.getEmail() + " adicionado com sucesso!");
     }
 
     @Transactional

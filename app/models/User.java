@@ -1,6 +1,9 @@
 package models;
 
+import play.db.jpa.JPA;
+
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,8 +16,6 @@ public class User {
 
     @Id
     public String email;
-    @Column(unique = true)
-    public String login;
     public String firstName;
     public String lastName;
     public String role;
@@ -36,14 +37,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getFirstName() {
@@ -111,18 +104,24 @@ public class User {
     }
 
     public User() {
+        comments = new HashSet<Comment>();
+        answers = new HashSet<Answer>();
+        apps = new HashSet<App>();
     }
 
-    public User(String email, String login, String firstName, String lastName, String role, String thumbnail, String password) {
+    public User(String email, String firstName, String lastName, String role, String password) {
         this.email = email;
-        this.login = login;
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
-        this.thumbnail = thumbnail;
         this.password = password;
         comments = new HashSet<Comment>();
         answers = new HashSet<Answer>();
         apps = new HashSet<App>();
+    }
+
+    @Transactional
+    public static User authenticate(String email, String password){
+        return JPA.em().find(User.class, email);
     }
 }

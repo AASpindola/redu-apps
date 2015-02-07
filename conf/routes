@@ -12,6 +12,8 @@ POST        /newapp                   controllers.AppController.saveNewApp()
 POST        /register                 controllers.AppController.saveNewUser()
 GET         /app/:name                controllers.AppController.appPage(name)
 GET         /appsbynameresults        controllers.AppController.searchAppsByName()
+GET         /login                    controllers.UserSessionController.login()
+POST        /login                    controllers.UserSessionController.authenticate()
 
 
 # Map static resources from the /public folder to the /assets URL path
