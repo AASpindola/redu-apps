@@ -12,12 +12,48 @@ public class Answer {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    public long answerId;
+    private long answerId;
     @Lob
-    public String body;
-    public String kind;
+    private String body;
+    private String kind;
     @ManyToOne
-    public User author;
+    private User author;
     @ManyToOne
-    public Comment comment;
+    private Comment comment;
+
+    public long getAnswerId() {
+        return answerId;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public String getKind() {
+        return kind;
+    }
+
+    public void setKind(String kind) {
+        this.kind = kind;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
+    }
 }
