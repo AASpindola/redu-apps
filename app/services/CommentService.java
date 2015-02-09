@@ -2,6 +2,7 @@ package services;
 
 import models.App;
 import models.Comment;
+import models.User;
 import play.db.jpa.JPA;
 
 import java.util.List;
@@ -38,4 +39,14 @@ public class CommentService {
         return resultSet;
     }
 
+    public static User getUserByEmail (String email) {
+
+            String q = "SELECT a FROM User a WHERE email = :email";
+            List<User> resultSet = JPA.em().createQuery(q, User.class)
+                    .setParameter("email", email)
+                    .getResultList();
+
+            return resultSet.get(0);
+
+    }
 }

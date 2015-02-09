@@ -30,7 +30,7 @@ public class CommentController extends Controller {
         comment.setKind(commentQuery_data.get("kind")[0]);
         comment.setBody(commentQuery_data.get("body")[0]);
         comment.setApp(AppService.getAppByName(commentQuery_data.get("app")[0]));
-        comment.setAuthor(new User("static_mail@gmail.com", "marcel", "reboucas", "user", "123"));
+        comment.setAuthor(CommentService.getUserByEmail(commentQuery_data.get("author")[0]));
         comment.setAnswers(new HashSet<Answer>());
 
 
@@ -62,7 +62,7 @@ public class CommentController extends Controller {
         answer.setKind(commentQuery_data.get("kind")[0]);
         answer.setBody(commentQuery_data.get("body")[0]);
         answer.setComment(CommentService.getCommentById(Long.getLong(commentQuery_data.get("comment")[0])));
-        answer.setAuthor(new User("static_mail@gmail.com", "marcel", "reboucas", "user", "123"));
+        answer.setAuthor(CommentService.getUserByEmail(commentQuery_data.get("author")[0]));
 
 
         try {

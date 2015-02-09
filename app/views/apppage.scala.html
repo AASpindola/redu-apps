@@ -150,7 +150,7 @@
 
         <form method="POST" action="@routes.CommentController.saveNewComment" enctype="multipart/form-data" class="status-tab status-list create-response tab-right">
             <input type="hidden" name="kind" value="common">
-            <input type="hidden" name="author" value="user.id">
+            <input type="hidden" name="author" value="mscreboucas@@gmail.com">
             <input type="hidden" name="app" value="@app.appName">
             <textarea name="body" rows="6"></textarea>
             <ul class="status-buttons">
@@ -171,108 +171,107 @@
 <!-- Comentários comuns. -->
 
 <ol id="comments" class="status-list">
-    <!-- while has comments, show every comment - paginate -->
     <!-- ###########SECAO DO _common_comment.scala.html #################################-->
 
-    <li id="comment-comment.commentId">
-        <hr class="list-separator">
-        <div class="status without-context">
-            <div class="subject">
-                <a href="link_to_user_who_posted" class="author-thumbnail">
-                    <img src='@routes.Assets.at("images/missing_users_medium.png")' alt="comment.author.name" title="comment.author.name" size="64x64"/>
-                </a>
+    @if(app.comments.isEmpty) {
+    <!-- SEJA O PRIMEIRO A COMENTAR -->
 
-                <div class="subject-info">
-                    <a href=link_to_user_who_posted" class="link-name">Pedro
-                        <span class="action">comentou sobre este aplicativo:</span>
-                        <span class="date legend"> 05/02/15 - 22:10 </span>
-                    </a>
-                </div>
-            </div>
-            <div class="subject-content">
-                <div class="status-content status-tab tab-left">
-                    EU NUM TO DOIDO!
-                </div>
-                <!-- ###########SECAO DO _RESPONSE.scala.html #################################-->
-                <ol id="comments-for-comment.commentId" class="comments responses status-tab tab-left">
-                    <li class="show-responses">
-                        <span class="legend last-responses">Visualizando as últimas respostas...</span>
-                        <hr>
-                    </li>
-                    <!-- ###########SECAO DO _ANSWER.scala.html #################################-->
-                    <!-- SHOW EVERY ANSWER -->
-                    <li id="comment-answer.answerId">
-                        <hr>
-                        <div class="response">
-                            <a href="link_to_answer_author" class="author-thumbnail">
-                                <img src='@routes.Assets.at("images/missing_users_small.png")' alt="comment.author.name" title="comment.author.name" size="32x32"/>
-                            </a>
-                            <a href=link_to_user_who_posted" class="link-name">Bola
-                                <span class="action">respondeu: </span>
-                                <span class="date legend"> 05/02/15 - 22:15 </span>
-                            </a>
-                            <div class="status-content">
-                                Mais doido que geodude pulando corda.
-                            </div>
 
+    }else{
+
+        @for(comment <- app.comments) {
+            <li id="comment-@comment.getCommentId()">
+                <hr class="list-separator">
+                <div class="status without-context">
+                    <div class="subject">
+                        <a href="link_to_user_who_posted" class="author-thumbnail">
+                            <img src='@routes.Assets.at("images/missing_users_medium.png")' alt="@comment.getAuthor().getFirstName() @comment.getAuthor().getLastName()"
+                                 title="@comment.getAuthor().getFirstName() @comment.getAuthor().getLastName()" size="64x64"/>
+                        </a>
+
+                        <div class="subject-info">
+                            <a href=link_to_user_who_posted" class="link-name">@comment.getAuthor().getFirstName() @comment.getAuthor().getLastName()
+                                <span class="action">comentou sobre este aplicativo:</span>
+                                <span class="date legend"> 05/02/15 - 22:10 </span>
+                            </a>
                         </div>
-                    </li>
-
-                    <li id="comment-answer.answerId2">
-                        <hr>
-                        <div class="response">
-
-                            <a href="link_to_answer_author" class="author-thumbnail">
-                                <img src='@routes.Assets.at("images/missing_users_small.png")' alt="comment.author.name" title="comment.author.name" size="32x32"/>
-                            </a>
-                            <a href=link_to_user_who_posted" class="link-name">Marcel
-                                <span class="action">respondeu: </span>
-                                <span class="date legend"> 05/02/15 - 22:16 </span>
-                            </a>
-                            <div class="status-content">
-                                Mais doido que pikachu surfista
-                            </div>
+                    </div>
+                    <div class="subject-content">
+                        <div class="status-content status-tab tab-left">
+                            @comment.getBody()
                         </div>
-                    </li>
-                    <!-- END SHOW EVERY ANSWER -->
-                    <!-- ###########FIM DA SECAO DO _ANSWER.scala.html #################################-->
-                    <li class="show-responses">
-                        <div class="show-more">
-                            <hr>
-                            <span class="see-more link-fake link-secondary">Mostrar todas as respostas</span>
-                        </div>
-                    </li>
-                </ol>
-                <!-- ###########FIM DA SECAO DO _RESPONSE.scala.html #################################-->
-                <!-- IF CAN COMMENT -->
-                <ul class="actions">
-                    <li class="reply-status icon-reply-gray_8_10-before" onclick="toggle_visibility('response-form')">
-                        <span class="link-fake link-secondary">Responder</span>
-                    </li>
-                </ul>
-
-                <div id="response-form">
-                    <!-- ###########SECAO DO _RESPONSE_FORM.scala.html #################################-->
-                    <form method="POST" action="@routes.CommentController.saveNewComment" enctype="multipart/form-data" class="status-tab status-list create-status tab-left">
-                        <input type="hidden" name="kind" value="common">
-                        <input type="hidden" name="author" value="current_user.id">
-                        <input type="hidden" name="comment" value="comment.commentId">
-                        <textarea name="body" rows="6"></textarea>
-                        <ul class="status-buttons">
-                            <li>
-                                <button type="button" class="button-default cancel" onclick="toggle_visibility('response-form')">Cancelar</button>
+                        <!-- ###########SECAO DO _RESPONSE.scala.html #################################-->
+                        <ol id="comments-for-@comment.getCommentId()" class="comments responses status-tab tab-left">
+                            <li class="show-responses">
+                                <span class="legend last-responses">Visualizando as últimas respostas...</span>
+                                <hr>
                             </li>
-                            <li>
-                                <input type="submit" value="Enviar" class="button-primary"/>
+
+                            @for(answer <- comment.getAnswers()) {
+                                <!-- ###########SECAO DO _ANSWER.scala.html #################################-->
+                                <!-- SHOW EVERY ANSWER -->
+                                <li id="comment-@answer.getAnswerId()">
+                                    <hr>
+                                    <div class="response">
+                                        <a href="link_to_answer_author" class="author-thumbnail">
+                                            <img src='@routes.Assets.at("images/missing_users_small.png")' alt="@answer.getAuthor().getFirstName() @answer.getAuthor().getLastName()"
+                                                 title="@answer.getAuthor().getFirstName() @answer.getAuthor().getLastName()" size="32x32"/>
+                                        </a>
+                                        <a href=link_to_user_who_posted" class="link-name">@answer.getAuthor().getFirstName() @answer.getAuthor().getLastName()
+                                            <span class="action">respondeu: </span>
+                                            <span class="date legend"> 05/02/15 - 22:15 </span>
+                                        </a>
+                                        <div class="status-content">
+                                            @answer.getBody()
+                                        </div>
+
+                                    </div>
+                                </li>
+                            }
+                            <!-- END SHOW EVERY ANSWER -->
+                            <!-- ###########FIM DA SECAO DO _ANSWER.scala.html #################################-->
+                            <li class="show-responses">
+                                <div class="show-more">
+                                    <hr>
+                                    <span class="see-more link-fake link-secondary">Mostrar todas as respostas</span>
+                                </div>
+                            </li>
+                        </ol>
+                        <!-- ###########FIM DA SECAO DO _RESPONSE.scala.html #################################-->
+                        <!-- IF CAN COMMENT -->
+                        <ul class="actions">
+                            <li class="reply-status icon-reply-gray_8_10-before" onclick="toggle_visibility('response-form')">
+                                <span class="link-fake link-secondary">Responder</span>
                             </li>
                         </ul>
-                    </form>
-                    <!-- ########### END DA SECAO DO _RESPONSE_FORM.scala.html #################################-->
-                </div>
 
-            </div>
-        </div>
-    </li>
+                        <div id="response-form">
+                            <!-- ###########SECAO DO _RESPONSE_FORM.scala.html #################################-->
+                            <form method="POST" action="@routes.CommentController.saveNewComment" enctype="multipart/form-data" class="status-tab status-list create-status tab-left">
+                                <input type="hidden" name="kind" value="common">
+                                <input type="hidden" name="author" value="mscreboucas@@gmail.com">
+                                <input type="hidden" name="comment" value="@comment.getCommentId()">
+                                <textarea name="body" rows="6"></textarea>
+                                <ul class="status-buttons">
+                                    <li>
+                                        <button type="button" class="button-default cancel" onclick="toggle_visibility('response-form')">Cancelar</button>
+                                    </li>
+                                    <li>
+                                        <input type="submit" value="Enviar" class="button-primary"/>
+                                    </li>
+                                </ul>
+                            </form>
+                            <!-- ########### END DA SECAO DO _RESPONSE_FORM.scala.html #################################-->
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+        }
+
+    <!-- SE TEM COMENTARIOS -->
+
+    }
     <!-- ########### END DA SECAO DO _common_comment.scala.html #################################-->
 </ol>
 
