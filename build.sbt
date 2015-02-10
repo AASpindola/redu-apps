@@ -14,5 +14,6 @@ libraryDependencies ++= Seq(
   "mysql" % "mysql-connector-java" % "5.1.34",
   "com.cloudinary" % "cloudinary" % "1.0.8",
   "org.springframework.data" % "spring-data-elasticsearch" % "1.1.1.RELEASE",
-  "org.elasticsearch" % "elasticsearch" % "1.4.2"
+  "org.elasticsearch" % "elasticsearch" % "1.4.2",
+  "org.jsoup" % "jsoup" % "1.8.1"
 )

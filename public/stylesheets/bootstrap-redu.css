@@ -1393,7 +1393,7 @@ textarea:-moz-placeholder {
 }
 
 .control-file {
-    position: absolute;
+    position: relative;
     top: 0;
 }
 .control-file .button-default +
@@ -8279,11 +8279,13 @@ p {
 #main-container{
     min-height:100%;
     position:relative;
-    padding-bottom:180px;
 }
 
 .new-app-form{
-    padding:100px;
+    padding-right:100px;
+    padding-left:100px;
+    padding-top:20px;
+    padding-bottom:20px;
 }
 
 

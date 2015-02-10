@@ -1,6 +1,19 @@
-@(levels: List[String], areas: List[String])
+@(levels: List[String], areas: List[String], app: models.App)
+
+@main("New App"){
+
+    <form method="POST" class="new-app-form" action="@routes.AppController.parseXML" enctype="multipart/form-data">
+        <h3>Adicione um xml (opcional)</h3>
+
+        <input type='file'  id="app-xml" name='app-xml' value=''/></br></br>
+        <input type="submit" value="Importar XML">
+    </form>
 
     <form method="POST" class="new-app-form" action="@routes.AppController.saveNewApp" enctype="multipart/form-data">
+
+        <h3>Preencha os campos e salve o novo app</h3> <br/>
+
+        <label>Nível:</label>
         <select name="app-level">
             <option value="none">Selecione um Nível</option>
             @for(lv <- levels) {
@@ -8,6 +21,7 @@
             }
         </select><br/><br/>
 
+        <label>Área:</label>
         <select name="app-area">
             <option value="none">Selecione uma Área</option>
             @for(area <- areas) {
@@ -17,55 +31,53 @@
 
         <label>Name:</label>
 
-        <input type='text'  name='app-name' value=''/> <br/><br/>
+        <input type='text'  name='app-name' value='@app.appName'/> <br/><br/>
 
         <label>thumbnail:</label>
 
-        <input type='file'  name='app-thumbnail' value=''/> <br/><br/>
+        <input type='file'  name='app-thumbnail' value='@app.thumbnail'/> <br/><br/>
 
         <label>url:</label>
 
-        <input type='text'  name='app-url' value=''/> <br/><br/>
+        <input type='text'  name='app-url' value='@app.url'/> <br/><br/>
 
         <label>language:</label>
 
-        <input type='text'  name='app-language' value=''/> <br/><br/>
+        <input type='text'  name='app-language' value='@app.language'/> <br/><br/>
 
         <label>objective:</label>
 
-        <input type='text'  name='app-objective' value=''/> <br/><br/>
+        <input type='text'  name='app-objective' value='@app.objective'/> <br/><br/>
 
         <label>synopsis:</label>
 
-        <input type='text'  name='app-synopsis' value=''/> <br/><br/>
+        <input type='text'  name='app-synopsis' value='@app.synopsis'/> <br/><br/>
 
         <label>description:</label>
 
-        <input type='text'  name='app-description' value=''/> <br/><br/>
+        <input type='text'  name='app-description' value='@app.description'/> <br/><br/>
 
         <label>publishers:</label>
 
-        <input type='text'  name='app-publishers' value=''/> <br/><br/>
-
-        <label>submitters:</label>
-
-        <input type='text'  name='app-submitters' value=''/> <br/><br/>
+        <input type='text'  name='app-publishers' value='@app.publishers'/> <br/><br/>
 
         <label>copyright:</label>
 
-        <input type='text'  name='app-copyright' value=''/> <br/> <br/>
+        <input type='text'  name='app-copyright' value='@app.copyright'/> <br/> <br/>
 
         <label>country:</label>
 
-        <input type='text'  name='app-country' value=''/> <br/> <br/>
+        <input type='text'  name='app-country' value='@app.country'/> <br/> <br/>
 
         <label>author:</label>
 
-        <input type='text'  name='app-author' value=''/> <br/> <br/>
+        <input type='text'  name='app-author' value='@app.author'/> <br/> <br/>
 
         <label>classification:</label>
 
-        <input type='text'  name='app-classification' value=''/> <br/> <br/>
+        <input type='text'  name='app-classification' value='@app.classification'/> <br/> <br/>
 
-        <input id="buttonForm" type="submit" value="Submit">
+        <input type="submit" value="Submit">
     </form>
+
+}

@@ -1,7 +1,10 @@
 package controllers;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import play.data.DynamicForm;
 import play.db.jpa.Transactional;
+import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
@@ -14,6 +17,7 @@ import java.util.*;
 
 import services.CloudinaryService;
 import services.ElasticSearchServices;
+import services.XMLParser;
 import views.html.*;
 
 import static play.data.Form.form;
@@ -24,11 +28,26 @@ import static play.data.Form.form;
 public class AppController extends Controller {
 
     public static AppService appService = AppService.getInstance();
+    public static XMLParser xmlParser = XMLParser.getInstance();
     public static ElasticSearchServices elasticSearchServices = ElasticSearchServices.getInstance();
 
     @Transactional
     public static Result newApp() {
-        return ok(newapp.render(Arrays.asList(Constants.levels), Arrays.asList(Constants.area)));
+        return ok(newapp.render(Arrays.asList(Constants.levels), Arrays.asList(Constants.area), new App()));
+    }
+
+    public static Result parseXML() {
+        Http.MultipartFormData body = request().body().asMultipartFormData();
+        Http.MultipartFormData.FilePart xmlFile = body.getFile("app-xml");
+        Document doc = null;
+        try {
+            doc = Jsoup.parse(xmlFile.getFile(), "UTF-8", "http://example.com/");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        App app = xmlParser.fromXMLtoApp(doc);
+
+        return ok(newapp.render(Arrays.asList(Constants.levels), Arrays.asList(Constants.area), app));
     }
 
     @Transactional
@@ -52,6 +71,7 @@ public class AppController extends Controller {
             app.language = appQuery_data.get("app-language")[0];
             app.objective = appQuery_data.get("app-objective")[0];
             app.synopsis = appQuery_data.get("app-synopsis")[0];
+            app.classification = appQuery_data.get("app-classification")[0];
             app.description = appQuery_data.get("app-description")[0];
             app.publishers = appQuery_data.get("app-publishers")[0];
             app.copyright = appQuery_data.get("app-copyright")[0];
