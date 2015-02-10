@@ -8,10 +8,9 @@ import play.libs.F;
 import play.mvc.Result;
 
 import javax.persistence.EntityManager;
-
 import static play.mvc.Controller.flash;
+import java.util.List;
 import static play.mvc.Results.badRequest;
-import static play.mvc.Results.ok;
 
 /**
  * Created by arturspindola on 09/02/15.
@@ -29,6 +28,18 @@ public class UserService {
             instance = new UserService();
         }
         return instance;
+    }
+
+
+    public static User getUserByEmail (String email) {
+
+        String q = "SELECT a FROM User a WHERE email = :email";
+        List<User> resultSet = JPA.em().createQuery(q, User.class)
+                .setParameter("email", email)
+                .getResultList();
+
+        return resultSet.get(0);
+
     }
 
     public static Result saveUser(User user){

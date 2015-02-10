@@ -39,33 +39,8 @@
 
         <label>Screenshots:</label>
 
-        @if(app.screenshots!=null){
-            @if(app.screenshots.length>2){
-                <input type='file'  name='app-screenshot0' value='@app.screenshots(0)'/> <br/>
-                <input type='file'  name='app-screenshot1' value='@app.screenshots(1)'/> <br/>
-                <input type='file'  name='app-screenshot2' value='@app.screenshots(2)'/> <br/>
-            }else{
-                @if(app.screenshots.length>1){
-                    <input type='file'  name='app-screenshot0' value='@app.screenshots(0)'/> <br/>
-                    <input type='file'  name='app-screenshot1' value='@app.screenshots(1)'/> <br/>
-                    <input type='file'  name='app-screenshot2' value=''/> <br/>
-                }else{
-                    @if(app.screenshots.length>0){
-                        <input type='file'  name='app-screenshot0' value='@app.screenshots(0)'/> <br/>
-                        <input type='file'  name='app-screenshot1' value=''/> <br/>
-                        <input type='file'  name='app-screenshot2' value=''/> <br/>
-                    }else{
-                        <input type='file'  name='app-screenshot0' value=''/> <br/>
-                        <input type='file'  name='app-screenshot1' value=''/> <br/>
-                        <input type='file'  name='app-screenshot2' value=''/> <br/>
-                    }
-                }
-            }
-        }else{
-            <input type='file'  name='app-screenshot0' value=''/> <br/>
-            <input type='file'  name='app-screenshot1' value=''/> <br/>
-            <input type='file'  name='app-screenshot2' value=''/> <br/>
-        }
+        <input type='file'  name='app-screenshot0' value='@app.screenshot0'/> <br/>
+        <input type='file'  name='app-screenshot1' value='@app.screenshot1'/> <br/>
 
         </br>
         <label>url:</label>

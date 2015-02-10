@@ -74,25 +74,8 @@
 
                 <!-- Botões. -->
                 <div class="oer-buttons">
-                    <button class="button-default" data-toggle="modal-app" data-modal-title="@app.appName" data-modal-subtitle="@app.author" data-modal-url="@app.url">Abrir este Recurso</button>
-                    <!-- @*
-                    <% if can? :create, UserAppAssociation.new(app: @app)   %>
-                    <%= form_tag user_favorites_path(current_user), method: "post" do %>
-                    <%= hidden_field_tag :app_id , @app.id %>
-                    <%= content_tag :button, type: :submit, class: "button-primary" do %>
-                    Adicionar a Favoritos
-                    <% end %>
-                    <% end %>
-                    <% end %>
-                    <% if can? :checkout, @app %>
-                    <%= form_tag app_checkout_path(@app, previous_step: 0), method: :post, remote: true do %>
-                    <%= content_tag :button, "Adicionar à Disciplina", type: :submit, class: "button-success" %>
-                    <% end %>
-                    <% end %>
-                    <% if can? :destroy, @favorite %>
-                    <%= link_to "Remover dos Favoritos", user_favorite_path(current_user, @favorite), method: "delete", class: "icon-favorite-delete-lightblue_16_18-before", title: "Remover dos Favoritos" %>
-                    <% end %>
-                    *@ -->
+                    <button class="button-default" data-toggle="modal-app">Abrir este Recurso</button>
+                    <button class="button-default" data-toggle="modal-app">Exportar como xml</button>
                 </div>
             </div>
 
@@ -124,20 +107,19 @@
                     </li>
                 </ul>
             </div>
-
-            <!-- @*
             <div class="oer-images">
-            <% @app.screen_shots.each do |ss| %>
-            <%= image_tag ss.screen.url(:unique), alt: "Prévia", title: "Prévia", class: screen_shot_class(@app.screen_shots.length), size: "700x200" %>
-            <% end %>
-        </div>
-        *@ -->
+                @if(app.screenshot0 != null) {
+                <img src="@app.screenshot0"  alt="Previa" title="Previa" class="oer-image-preview oer-image-preview-small" size="700x200"/>
+                }
+                @if(app.screenshot1 != null) {
+                <img src="@app.screenshot1"  alt="Previa" title="Previa" class="oer-image-preview oer-image-preview-small" size="700x200"/>
+                }
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Botões de comentários
-<% if can? :create, Comment %>  -->
+<!-- Botões de comentários -->
 <div class="content-section oer-comments reply-buttons">
     <ul class="reply-buttons-list">
         <li>
@@ -190,10 +172,10 @@
                         </a>
 
                         <div class="subject-info">
-                            <a href=link_to_user_who_posted" class="link-name">@comment.getAuthor().getFirstName() @comment.getAuthor().getLastName()
+                            <a href=link_to_user_who_posted" class="link-name">@comment.getAuthor().getFirstName() @comment.getAuthor().getLastName() </a>
                                 <span class="action">comentou sobre este aplicativo:</span>
-                                <span class="date legend"> 05/02/15 - 22:10 </span>
-                            </a>
+                                <span class="date legend"> @comment.getPostedTime </span>
+
                         </div>
                     </div>
                     <div class="subject-content">
@@ -201,6 +183,7 @@
                             @comment.getBody()
                         </div>
                         <!-- ###########SECAO DO _RESPONSE.scala.html #################################-->
+                        @if(!comment.getAnswers().isEmpty){
                         <ol id="comments-for-@comment.getCommentId()" class="comments responses status-tab tab-left">
                             <li class="show-responses">
                                 <span class="legend last-responses">Visualizando as últimas respostas...</span>
@@ -217,10 +200,10 @@
                                             <img src='@routes.Assets.at("images/missing_users_small.png")' alt="@answer.getAuthor().getFirstName() @answer.getAuthor().getLastName()"
                                                  title="@answer.getAuthor().getFirstName() @answer.getAuthor().getLastName()" size="32x32"/>
                                         </a>
-                                        <a href=link_to_user_who_posted" class="link-name">@answer.getAuthor().getFirstName() @answer.getAuthor().getLastName()
+                                        <a href=link_to_user_who_posted" class="link-name">@answer.getAuthor().getFirstName() @answer.getAuthor().getLastName()</a>
                                             <span class="action">respondeu: </span>
                                             <span class="date legend"> 05/02/15 - 22:15 </span>
-                                        </a>
+
                                         <div class="status-content">
                                             @answer.getBody()
                                         </div>
@@ -237,24 +220,25 @@
                                 </div>
                             </li>
                         </ol>
+                        }
                         <!-- ###########FIM DA SECAO DO _RESPONSE.scala.html #################################-->
                         <!-- IF CAN COMMENT -->
                         <ul class="actions">
-                            <li class="reply-status icon-reply-gray_8_10-before" onclick="toggle_visibility('response-form')">
+                            <li class="reply-status icon-reply-gray_8_10-before" onclick="toggle_visibility('response-form-@comment.getCommentId()')">
                                 <span class="link-fake link-secondary">Responder</span>
                             </li>
                         </ul>
 
-                        <div id="response-form">
+                        <div id="response-form-@comment.getCommentId()" class="response-form-class">
                             <!-- ###########SECAO DO _RESPONSE_FORM.scala.html #################################-->
-                            <form method="POST" action="@routes.CommentController.saveNewComment" enctype="multipart/form-data" class="status-tab status-list create-status tab-left">
+                            <form method="POST" action="@routes.CommentController.saveNewAnswer" enctype="multipart/form-data" class="status-tab status-list create-status tab-left">
                                 <input type="hidden" name="kind" value="common">
                                 <input type="hidden" name="author" value="mscreboucas@@gmail.com">
                                 <input type="hidden" name="comment" value="@comment.getCommentId()">
                                 <textarea name="body" rows="6"></textarea>
                                 <ul class="status-buttons">
                                     <li>
-                                        <button type="button" class="button-default cancel" onclick="toggle_visibility('response-form')">Cancelar</button>
+                                        <button type="button" class="button-default cancel" onclick="toggle_visibility('response-form-@comment.getCommentId()')">Cancelar</button>
                                     </li>
                                     <li>
                                         <input type="submit" value="Enviar" class="button-primary"/>
@@ -282,8 +266,11 @@
         {
             toggle_visibility('comment-form');
             toggle_visibility('comment-form');
-            toggle_visibility('response-form');
-            toggle_visibility('response-form');
+            var responses = document.getElementsByClassName("response-form-class");
+            for (var i = 0; i < responses.length; i++){
+                toggle_visibility(responses[i].id);
+                toggle_visibility(responses[i].id);
+            }
         }
 
     </script>

@@ -36,7 +36,8 @@ public class App {
     public String publishers;
     public String copyright;
     public String country;
-    public String[] screenshots;
+    public String screenshot0;
+    public String screenshot1;
     public String classification;
     public String level;
     public String area;
@@ -44,8 +45,9 @@ public class App {
     @ManyToOne
     public User submitter;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, mappedBy="app")
     public Set<Comment> comments;
+    public int commentsCount;
 
     public XContentBuilder buildXContent (){
         XContentBuilder builder = null;
@@ -59,7 +61,7 @@ public class App {
             builder.field("thumbnail", thumbnail);
             builder.field("language", language);
             builder.field("views", views);
-            builder.field("commentsCount", comments.size());
+            builder.field("commentsCount", commentsCount);
             builder.field("level", level);
             builder.field("area", area);
             builder.endObject();
@@ -75,7 +77,7 @@ public class App {
         thumbnail = json.get("thumbnail") == null ? null : json.get("thumbnail").asText();
         language = json.get("language") == null ? "" : json.get("language").asText();
         views = json.get("views") == null ? 0 : json.get("views").asInt();
-        comments = new HashSet<Comment>(json.get("comments") == null ? 0 : json.get("comments").asInt());
+        commentsCount = json.get("commentsCount") == null ? 0 : json.get("commentsCount").asInt();
         level = json.get("level") == null ? "" : json.get("level").asText();
         area = json.get("area") == null ? "" : json.get("area").asText();
     }

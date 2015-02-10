@@ -1,5 +1,6 @@
 package services;
 
+import models.Answer;
 import models.App;
 import models.Comment;
 import models.User;
@@ -20,7 +21,7 @@ public class CommentService {
 
     private static CommentService instance;
     private static EntityManager em = null;
-
+    private static ElasticSearchServices elasticSearchServices = ElasticSearchServices.getInstance();
 
     public static CommentService getInstance() {
         if (instance == null) {
@@ -50,17 +51,6 @@ public class CommentService {
         return resultSet;
     }
 
-    public static User getUserByEmail (String email) {
-
-            String q = "SELECT a FROM User a WHERE email = :email";
-            List<User> resultSet = JPA.em().createQuery(q, User.class)
-                    .setParameter("email", email)
-                    .getResultList();
-
-            return resultSet.get(0);
-
-    }
-
     public Result saveComment (Comment comment) {
 
         if (!em.getTransaction().isActive()) {
@@ -78,11 +68,38 @@ public class CommentService {
                 }
             });
 
+            elasticSearchServices.updateCommentsCount(comment.getApp().appName);
+
             return ok("Comentário adicionado com sucesso!");
 
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return badRequest("Ocorreu um erro ao salvar o comentário: \n" + throwable.getMessage());
+        }
+    }
+
+    public Result saveAnswer (Answer answer){
+
+        if (!em.getTransaction().isActive()) {
+            em.getTransaction().begin();
+        }
+
+        try {
+            JPA.withTransaction(new F.Function0<Boolean>() {
+                @Override
+                public Boolean apply() throws Throwable {
+                    em.persist(answer);
+                    em.flush();
+                    em.getTransaction().commit();
+                    return null;
+                }
+            });
+
+            return ok("Resposta adicionada com sucesso!");
+
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return badRequest("Ocorreu um erro ao salvar a resposta: \n" + throwable.getMessage());
         }
     }
 }
