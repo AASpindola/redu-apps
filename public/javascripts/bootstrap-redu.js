@@ -1423,7 +1423,7 @@ $(function() {
 
   // Plugins.
 
-  $('.controls textarea').autosize()
+  // $('.controls textarea').autosize()
 
   placeHolderConfig = {
     // Nome da classe usada para estilizar o placeholder.
