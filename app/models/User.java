@@ -24,6 +24,7 @@ public class User {
     public String thumbnail;
 
     private String password;
+    private boolean empty;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
     public Set<Comment> comments;
@@ -105,10 +106,23 @@ public class User {
         this.apps = apps;
     }
 
+    public boolean isEmpty() {
+        if(email==null||firstName==null||lastName==null||role==null||thumbnail==null){
+            setEmpty(true);
+        }
+        return empty;
+    }
+
+    public void setEmpty(boolean empty) {
+
+        this.empty = empty;
+    }
+
     public User() {
         comments = new HashSet<Comment>();
         answers = new HashSet<Answer>();
         apps = new HashSet<App>();
+        setEmpty(true);
     }
 
     public User(String email, String firstName, String lastName, String role, String password) {
@@ -120,6 +134,7 @@ public class User {
         comments = new HashSet<Comment>();
         answers = new HashSet<Answer>();
         apps = new HashSet<App>();
+        setEmpty(false);
     }
 
     @Transactional
