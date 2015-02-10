@@ -110,7 +110,7 @@ public class User {
         if(email==null||firstName==null||lastName==null||role==null||thumbnail==null){
             setEmpty(true);
         }
-        return empty;
+        return false;
     }
 
     public void setEmpty(boolean empty) {
