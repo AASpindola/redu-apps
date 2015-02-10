@@ -27,7 +27,6 @@ public class XMLParser {
 
         app.appName = xmlDoc.getElementsByTagName("title").item(0).getTextContent();
 
-        //app.thumbnail;
         app.views = 0;
         app.url = xmlDoc.getElementsByTagName("lom").item(0).getAttributes().getNamedItem("xmlns:lom").getTextContent();
         app.language = xmlDoc.getElementsByTagName("language").item(0).getTextContent();

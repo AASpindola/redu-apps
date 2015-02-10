@@ -20,6 +20,8 @@ import java.util.Map;
  */
 public class CommentController extends Controller {
 
+    private static CommentService commentService = CommentService.getInstance();
+
     @Transactional
     public static Result saveNewComment() {
 
@@ -33,23 +35,7 @@ public class CommentController extends Controller {
         comment.setAuthor(CommentService.getUserByEmail(commentQuery_data.get("author")[0]));
         comment.setAnswers(new HashSet<Answer>());
 
-
-        try {
-            JPA.withTransaction(new F.Function0<Boolean>() {
-                @Override
-                public Boolean apply() throws Throwable {
-                    JPA.em().persist(comment);
-                    JPA.em().getTransaction().commit();
-                    return null;
-                }
-            });
-
-            return ok("Comentario realizado com sucesso!");
-
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-            return badRequest("Ocorreu um erro ao salvar o comentario: \n" + throwable.getMessage());
-        }
+        return commentService.saveComment(comment);
     }
 
     @Transactional

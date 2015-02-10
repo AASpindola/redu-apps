@@ -3,7 +3,6 @@ package controllers;
 import bootstrap.SE;
 import models.User;
 import play.data.DynamicForm;
-import play.data.Form;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.libs.F;
@@ -15,10 +14,7 @@ import services.AppService;
 import bootstrap.Constants;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import services.CloudinaryService;
 import services.ElasticSearchServices;
@@ -39,10 +35,6 @@ public class AppController extends Controller {
         return ok(newapp.render(Arrays.asList(Constants.levels), Arrays.asList(Constants.area)));
     }
 
-    public static Result newUser() {
-        return ok(newuser.render());
-    }
-
     @Transactional
     public static Result saveNewApp() {
 
@@ -50,7 +42,6 @@ public class AppController extends Controller {
 
         Http.MultipartFormData body = request().body().asMultipartFormData();
         Map<String, String[]> appQuery_data = body.asFormUrlEncoded();
-        CloudinaryService cloudinaryService = CloudinaryService.getInstance();
 
         String appName = appQuery_data.get("app-name")[0];
 
@@ -86,6 +77,7 @@ public class AppController extends Controller {
             Http.MultipartFormData.FilePart thumbnail = body.getFile("app-thumbnail");
             if (thumbnail != null && thumbnail.getFile() != null) {
                 try {
+                    CloudinaryService cloudinaryService = CloudinaryService.getInstance();
                     String thumbUrl = cloudinaryService.upload(thumbnail.getFile());
                     app.thumbnail = thumbUrl;
                 } catch (IOException e) {
@@ -93,72 +85,8 @@ public class AppController extends Controller {
                 }
             }
 
-            try {
-                JPA.withTransaction(new F.Function0<Boolean>() {
-                    @Override
-                    public Boolean apply() throws Throwable {
-                        JPA.em().persist(app);
-                        JPA.em().getTransaction().commit();
-                        return null;
-                    }
-                });
-
-                // Indexando no elasticsearch
-                SE.client.prepareIndex("reduapps", "app", app.appName)
-                        .setSource(app.buildXContent())
-                        .execute()
-                        .actionGet();
-
-                return ok(app.appName + " adicionado com sucesso!");
-
-            } catch (Throwable throwable) {
-                throwable.printStackTrace();
-                return badRequest("Ocorreu um erro ao salvar o app: \n" + throwable.getMessage());
-            }
+            return appService.saveNewApp(app);
         }
-    }
-
-    @Transactional
-    public static Result saveNewUser() {
-
-        // O app já é verificado no frontend
-
-        Http.MultipartFormData body = request().body().asMultipartFormData();
-        Map<String, String[]> appQuery_data = body.asFormUrlEncoded();
-        CloudinaryService cloudinaryService = CloudinaryService.getInstance();
-
-        User user = new User(appQuery_data.get("user-email")[0], appQuery_data.get("user-firstname")[0], appQuery_data.get("user-lastname")[0], appQuery_data.get("user-role")[0], appQuery_data.get("user-password")[0]);
-
-        Http.MultipartFormData.FilePart thumbnail = body.getFile("app-thumbnail");
-        if (thumbnail != null && thumbnail.getFile() != null) {
-            try {
-                String thumbUrl = cloudinaryService.upload(thumbnail.getFile());
-                user.thumbnail = thumbUrl;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        try {
-            JPA.withTransaction(new F.Function0<Boolean>() {
-                @Override
-                public Boolean apply() throws Throwable {
-                    JPA.em().persist(user);
-                    JPA.em().getTransaction().commit();
-                    return null;
-                }
-            });
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
-
-        // Indexando no elasticsearch
-//        SE.client.prepareIndex("reduapps", "user", user.login)
-//                .setSource(user.buildXContent())
-//                .execute()
-//                .actionGet();
-
-        return ok(user.getEmail() + " adicionado com sucesso!");
     }
 
     @Transactional
@@ -166,19 +94,7 @@ public class AppController extends Controller {
 
         App app = appService.getAppByName(name);
         app.views++;
-
-        try {
-            JPA.withTransaction(new F.Function0<Boolean>() {
-                @Override
-                public Boolean apply() throws Throwable {
-                    JPA.em().persist(app);
-                    JPA.em().getTransaction().commit();
-                    return null;
-                }
-            });
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
+        appService.saveApp(app);
 
         elasticSearchServices.updateViewsCount(app.appName, app.views);
 
@@ -189,12 +105,13 @@ public class AppController extends Controller {
     public static Result searchAppsByName() {
         DynamicForm params = form().bindFromRequest();
         String query = params.get("q");
-        String lastName = params.get("l");
-        lastName = lastName == null ? "" : lastName;
+        String starting = params.get("s");
+        starting = starting == null ? "0" : starting;
+        int startingInt = Integer.parseInt(starting);
         query = query == null ? "" : query;
         //List<App> apps = appService.getAppsByNameLike(query, lastName);
-        List<App> apps = elasticSearchServices.searchApps(query);
-
+        List<App> apps = elasticSearchServices.searchAppsInRange(query, startingInt, startingInt + 12);
+        apps = apps == null ? new ArrayList<>() : apps;
         return ok(applistcontent.render(apps));
     }
 }

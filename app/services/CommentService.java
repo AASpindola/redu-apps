@@ -4,8 +4,14 @@ import models.App;
 import models.Comment;
 import models.User;
 import play.db.jpa.JPA;
+import play.libs.F;
+import play.mvc.Result;
 
+import javax.persistence.EntityManager;
 import java.util.List;
+
+import static play.mvc.Results.badRequest;
+import static play.mvc.Results.ok;
 
 /**
  * Created by Marcel on 08/02/2015.
@@ -13,9 +19,14 @@ import java.util.List;
 public class CommentService {
 
     private static CommentService instance;
+    private static EntityManager em = null;
+
 
     public static CommentService getInstance() {
         if (instance == null) {
+            if (em == null) {
+                em = JPA.em("default");
+            }
             instance = new CommentService();
         }
         return instance;
@@ -48,5 +59,30 @@ public class CommentService {
 
             return resultSet.get(0);
 
+    }
+
+    public Result saveComment (Comment comment) {
+
+        if (!em.getTransaction().isActive()) {
+            em.getTransaction().begin();
+        }
+
+        try {
+            JPA.withTransaction(new F.Function0<Boolean>() {
+                @Override
+                public Boolean apply() throws Throwable {
+                    em.persist(comment);
+                    em.flush();
+                    em.getTransaction().commit();
+                    return null;
+                }
+            });
+
+            return ok("Comentário adicionado com sucesso!");
+
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return badRequest("Ocorreu um erro ao salvar o comentário: \n" + throwable.getMessage());
+        }
     }
 }

@@ -9,6 +9,7 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.script.ScriptService;
 import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.sort.SortBuilder;
 import org.elasticsearch.search.sort.SortOrder;
 
 import java.io.IOException;
@@ -34,7 +35,6 @@ public class ElasticSearchServices {
                 .setTypes("app")
                 .addSort("views", SortOrder.DESC)
                 .addSort("appName", SortOrder.ASC);
-
 
         if (text != null && !text.equals("")) {
             builder.setQuery(QueryBuilders.prefixQuery("appName", text));
@@ -67,6 +67,16 @@ public class ElasticSearchServices {
         }
 
         return returnList;
+    }
+
+    public static List<App> searchAppsInRange (String text, int start, int end){
+        List<App> allApps = searchApps(text);
+        if (start > allApps.size()) {
+            return null;
+        } else {
+            end = end < allApps.size() ? end : allApps.size();
+            return allApps.subList(start, end);
+        }
     }
 
     public static void updateViewsCount(String appName, int newViews){
