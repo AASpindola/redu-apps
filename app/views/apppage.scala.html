@@ -1,4 +1,4 @@
-@(app: models.App)
+@(app: models.App, user: User)
 
 @main(app.appName){
 <div class="oer-main-wrapper">
@@ -287,4 +287,4 @@
         }
 
     </script>
-}
+}(user)

@@ -1,3 +1,4 @@
+@(user: User)
 @main("Register"){
 <form method="POST" class="new-app-form" action="@routes.UserController.newUser" enctype="multipart/form-data">
 
@@ -29,4 +30,4 @@
 
     <input id="buttonForm" type="submit" value="Submit">
 </form>
-}
+}(user)

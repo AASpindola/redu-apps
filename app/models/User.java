@@ -1,6 +1,5 @@
 package models;
 
-import play.Logger;
 import play.db.jpa.JPA;
 
 import javax.persistence.*;
@@ -131,6 +130,5 @@ public class User {
         }else{
             return null;
         }
-
     }
 }

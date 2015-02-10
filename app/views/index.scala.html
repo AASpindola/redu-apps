@@ -1,6 +1,6 @@
-@(levels: List[String])
+@(levels: List[String], user: User)
 
-@main("Redu Apps") {
+@main("Redu Apps"){
 
     <div class="apps-portal-oer">
         <div class="apps-portal-oer-explaination" style='background: url("@routes.Assets.at("images/oer-logo.png")") no-repeat'>
@@ -110,4 +110,4 @@
         }
 
     </script>
-}
+}(user)

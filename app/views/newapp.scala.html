@@ -1,11 +1,11 @@
-@(levels: List[String], areas: List[String], app: models.App)
+@(levels: List[String], areas: List[String], app: models.App, user: User)
 
 @main("New App"){
 
     <form method="POST" class="new-app-form" action="@routes.AppController.parseXML" enctype="multipart/form-data">
         <h3>Adicione um xml (opcional)</h3>
 
-        <input type='file'  id="app-xml" name='app-xml' value=''/></br></br>
+        <input type='file'  id="app-xml" name='app-xml' value=''/><br/><br/>
         <input type="submit" value="Importar XML">
     </form>
 
@@ -111,4 +111,4 @@
         <input type="submit" value="Submit">
     </form>
 
-}
+}(user)
