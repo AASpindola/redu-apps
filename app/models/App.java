@@ -8,6 +8,7 @@ import org.elasticsearch.common.xcontent.XContentFactory;
 import javax.persistence.*;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -41,6 +42,7 @@ public class App {
     public String classification;
     public String level;
     public String area;
+    public Map<String, Double> rateMapping;
 
     @ManyToOne
     public User submitter;

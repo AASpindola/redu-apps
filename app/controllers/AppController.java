@@ -153,4 +153,12 @@ public class AppController extends Controller {
         return ok(applistcontent.render(apps));
     }
 
+    public static Result rateApp() {
+        DynamicForm params = form().bindFromRequest();
+        String ratingValue = params.get("r");
+        String userEmail = params.get("u");
+
+        return ok();
+    }
+
 }
