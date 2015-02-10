@@ -1,6 +1,8 @@
 package controllers;
 
 import models.User;
+import play.db.jpa.JPA;
+import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
@@ -19,8 +21,15 @@ public class UserController extends Controller {
 
     public static UserService userService = UserService.getInstance();
 
+    @Transactional
     public static Result newUser() {
-        return ok(newuser.render());
+        User aux = null;
+        try{
+            aux = JPA.em().find(User.class, ctx().session().get("email"));
+        }catch(IllegalArgumentException e){
+            return ok(newuser.render(new User()));
+        }
+        return ok(newuser.render(aux));
     }
 
     public static Result saveNewUser() {

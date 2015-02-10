@@ -1,10 +1,11 @@
 package controllers;
 
+import models.User;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import play.data.DynamicForm;
+import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
-import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
@@ -33,9 +34,16 @@ public class AppController extends Controller {
 
     @Transactional
     public static Result newApp() {
-        return ok(newapp.render(Arrays.asList(Constants.levels), Arrays.asList(Constants.area), new App()));
+        User aux = new User();
+        try{
+            aux = JPA.em().find(User.class, ctx().session().get("email"));
+        }catch(IllegalArgumentException e){
+            e.printStackTrace();
+        }
+        return ok(newapp.render(Arrays.asList(Constants.levels), Arrays.asList(Constants.area), new App(), aux));
     }
 
+    @Transactional
     public static Result parseXML() {
         Http.MultipartFormData body = request().body().asMultipartFormData();
         Http.MultipartFormData.FilePart xmlFile = body.getFile("app-xml");
@@ -47,7 +55,14 @@ public class AppController extends Controller {
         }
         App app = xmlParser.fromXMLtoApp(doc);
 
-        return ok(newapp.render(Arrays.asList(Constants.levels), Arrays.asList(Constants.area), app));
+        User aux = new User();
+        try{
+            aux = JPA.em().find(User.class, ctx().session().get("email"));
+        }catch(IllegalArgumentException e){
+            e.printStackTrace();
+        }
+
+        return ok(newapp.render(Arrays.asList(Constants.levels), Arrays.asList(Constants.area), app, aux));
     }
 
     @Transactional
@@ -136,7 +151,13 @@ public class AppController extends Controller {
 
         elasticSearchServices.updateViewsCount(app.appName, app.views);
 
-        return ok(apppage.render(app));
+        User aux = new User();
+        try{
+            aux = JPA.em().find(User.class, ctx().session().get("email"));
+        }catch(IllegalArgumentException e){
+            e.printStackTrace();
+        }
+        return ok(apppage.render(app, aux));
     }
 
     public static Result searchApps() {

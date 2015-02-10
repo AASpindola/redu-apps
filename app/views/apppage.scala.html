@@ -1,4 +1,4 @@
-@(app: models.App)
+@(app: models.App, user: User)
 
 @main(app.appName){
 
@@ -296,4 +296,4 @@
     }
 
     </script>
-}
+}(user)

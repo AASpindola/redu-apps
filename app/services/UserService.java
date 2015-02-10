@@ -1,16 +1,16 @@
 package services;
 
+import controllers.Application;
+import controllers.UserSessionController;
 import models.User;
 import play.db.jpa.JPA;
 import play.libs.F;
 import play.mvc.Result;
 
 import javax.persistence.EntityManager;
-
+import static play.mvc.Controller.flash;
 import java.util.List;
-
 import static play.mvc.Results.badRequest;
-import static play.mvc.Results.ok;
 
 /**
  * Created by arturspindola on 09/02/15.
@@ -58,8 +58,8 @@ public class UserService {
                     return null;
                 }
             });
-
-            return ok(user.email + " adicionado com sucesso!");
+            flash("success", "You have been registered");
+            return UserSessionController.startSession(user.getEmail(), user.getPassword());
 
         } catch (Throwable throwable) {
             throwable.printStackTrace();
