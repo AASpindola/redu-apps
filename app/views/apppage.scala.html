@@ -176,6 +176,7 @@
                             @comment.getBody()
                         </div>
                         <!-- ###########SECAO DO _RESPONSE.scala.html #################################-->
+                        @if(!comment.getAnswers().isEmpty){
                         <ol id="comments-for-@comment.getCommentId()" class="comments responses status-tab tab-left">
                             <li class="show-responses">
                                 <span class="legend last-responses">Visualizando as últimas respostas...</span>
@@ -212,15 +213,16 @@
                                 </div>
                             </li>
                         </ol>
+                        }
                         <!-- ###########FIM DA SECAO DO _RESPONSE.scala.html #################################-->
                         <!-- IF CAN COMMENT -->
                         <ul class="actions">
-                            <li class="reply-status icon-reply-gray_8_10-before" onclick="toggle_visibility('response-form')">
+                            <li class="reply-status icon-reply-gray_8_10-before" onclick="toggle_visibility('response-form-@comment.getCommentId()')">
                                 <span class="link-fake link-secondary">Responder</span>
                             </li>
                         </ul>
 
-                        <div id="response-form">
+                        <div id="response-form-@comment.getCommentId()" class="response-form-class">
                             <!-- ###########SECAO DO _RESPONSE_FORM.scala.html #################################-->
                             <form method="POST" action="@routes.CommentController.saveNewAnswer" enctype="multipart/form-data" class="status-tab status-list create-status tab-left">
                                 <input type="hidden" name="kind" value="common">
@@ -229,7 +231,7 @@
                                 <textarea name="body" rows="6"></textarea>
                                 <ul class="status-buttons">
                                     <li>
-                                        <button type="button" class="button-default cancel" onclick="toggle_visibility('response-form')">Cancelar</button>
+                                        <button type="button" class="button-default cancel" onclick="toggle_visibility('response-form-@comment.getCommentId()')">Cancelar</button>
                                     </li>
                                     <li>
                                         <input type="submit" value="Enviar" class="button-primary"/>
@@ -257,8 +259,11 @@
         {
             toggle_visibility('comment-form');
             toggle_visibility('comment-form');
-            toggle_visibility('response-form');
-            toggle_visibility('response-form');
+            var responses = document.getElementsByClassName("response-form-class");
+            for (var i = 0; i < responses.length; i++){
+                toggle_visibility(responses[i].id);
+                toggle_visibility(responses[i].id);
+            }
         }
 
     </script>
