@@ -86,4 +86,28 @@ public class ElasticSearchServices {
                 .setScript("ctx._source.views = " + newViews, ScriptService.ScriptType.INLINE)
                 .get();
     }
+
+    public static void updateCommentsCount(String appName) throws IOException {
+
+        String response = SE.client.prepareSearch("reduapps")
+                .setTypes("app")
+                .setQuery(QueryBuilders.matchQuery("appName", appName))
+                .execute()
+                .actionGet()
+                .getHits()
+                .getAt(0)
+                .sourceAsString();
+
+        ObjectMapper mapper = new ObjectMapper();
+        System.out.println(response);
+        JsonNode comCount = mapper.readTree(response).get("commentsCount");
+        int oldCount = 0;
+        if (comCount != null){
+            oldCount = Integer.parseInt(comCount.asText());
+        }
+
+        SE.client.prepareUpdate("reduapps", "app", appName)
+                .setScript("ctx._source.commentsCount = " + (oldCount+1), ScriptService.ScriptType.INLINE)
+                .get();
+    }
 }

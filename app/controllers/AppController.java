@@ -106,7 +106,7 @@ public class AppController extends Controller {
                 try {
                     CloudinaryService cloudinaryService = CloudinaryService.getInstance();
                     String ssUrl = cloudinaryService.upload(screenshot0.getFile());
-                    app.screenshots[0] = ssUrl;
+                    app.screenshot0 = ssUrl;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -117,18 +117,7 @@ public class AppController extends Controller {
                 try {
                     CloudinaryService cloudinaryService = CloudinaryService.getInstance();
                     String ssUrl = cloudinaryService.upload(screenshot1.getFile());
-                    app.screenshots[1] = ssUrl;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            Http.MultipartFormData.FilePart screenshot2 = body.getFile("app-screenshot2");
-            if (screenshot2 != null && screenshot2.getFile() != null) {
-                try {
-                    CloudinaryService cloudinaryService = CloudinaryService.getInstance();
-                    String ssUrl = cloudinaryService.upload(screenshot2.getFile());
-                    app.screenshots[2] = ssUrl;
+                    app.screenshot1 = ssUrl;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

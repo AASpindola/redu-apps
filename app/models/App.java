@@ -36,7 +36,8 @@ public class App {
     public String publishers;
     public String copyright;
     public String country;
-    public String[] screenshots;
+    public String screenshot0;
+    public String screenshot1;
     public String classification;
     public String level;
     public String area;

@@ -21,7 +21,7 @@ public class CommentService {
 
     private static CommentService instance;
     private static EntityManager em = null;
-
+    private static ElasticSearchServices elasticSearchServices = ElasticSearchServices.getInstance();
 
     public static CommentService getInstance() {
         if (instance == null) {
@@ -67,6 +67,8 @@ public class CommentService {
                     return null;
                 }
             });
+
+            elasticSearchServices.updateCommentsCount(comment.getApp().appName);
 
             return ok("Comentário adicionado com sucesso!");
 

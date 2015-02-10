@@ -107,7 +107,14 @@
                     </li>
                 </ul>
             </div>
-
+            <div class="oer-images">
+                @if(app.screenshot0 != null) {
+                <img src="@app.screenshot0"  alt="Previa" title="Previa" class="oer-image-preview oer-image-preview-small" size="700x200"/>
+                }
+                @if(app.screenshot1 != null) {
+                <img src="@app.screenshot1"  alt="Previa" title="Previa" class="oer-image-preview oer-image-preview-small" size="700x200"/>
+                }
+            </div>
         </div>
     </div>
 </div>
