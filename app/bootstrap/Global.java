@@ -1,12 +1,7 @@
 package bootstrap;
 
-import models.App;
 import play.Application;
 import play.GlobalSettings;
-import play.Logger;
-import play.db.jpa.JPA;
-import play.libs.F;
-
 /**
  * Created by arturspindola on 21/01/15.
  */

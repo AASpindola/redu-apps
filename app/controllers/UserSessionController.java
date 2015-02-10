@@ -6,7 +6,6 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.login;
 
-import play.db.jpa.Transactional;
 
 /**
  * Created by pedro on 07/02/15.

@@ -9,7 +9,7 @@ GET         /                         controllers.Application.index()
 GET         /newapp                   controllers.AppController.newApp()
 POST        /newapp                   controllers.AppController.saveNewApp()
 GET         /app/:name                controllers.AppController.appPage(name)
-GET         /appsbynameresults        controllers.AppController.searchAppsByName()
+GET         /appsresult               controllers.AppController.searchApps()
 
 # user related endpoints
 GET         /register                 controllers.UserController.newUser()

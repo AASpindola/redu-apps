@@ -1,11 +1,7 @@
 package controllers;
 
-import bootstrap.SE;
-import models.User;
 import play.data.DynamicForm;
-import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
-import play.libs.F;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
@@ -101,17 +97,18 @@ public class AppController extends Controller {
         return ok(apppage.render(app));
     }
 
-    @Transactional
-    public static Result searchAppsByName() {
+    public static Result searchApps() {
         DynamicForm params = form().bindFromRequest();
         String query = params.get("q");
         String starting = params.get("s");
+        String field = params.get("f");
         starting = starting == null ? "0" : starting;
         int startingInt = Integer.parseInt(starting);
         query = query == null ? "" : query;
-        //List<App> apps = appService.getAppsByNameLike(query, lastName);
-        List<App> apps = elasticSearchServices.searchAppsInRange(query, startingInt, startingInt + 12);
+        field = field == null ? "" : field;
+        List<App> apps = elasticSearchServices.searchAppsInRange(field, query, startingInt, startingInt + 12);
         apps = apps == null ? new ArrayList<>() : apps;
         return ok(applistcontent.render(apps));
     }
+
 }

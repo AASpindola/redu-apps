@@ -9,7 +9,6 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.script.ScriptService;
 import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.sort.SortBuilder;
 import org.elasticsearch.search.sort.SortOrder;
 
 import java.io.IOException;
@@ -30,15 +29,18 @@ public class ElasticSearchServices {
         return instance;
     }
 
-    public static List<App> searchApps(String text) {
+    public static List<App> searchApps(String field, String query) {
         SearchRequestBuilder builder = SE.client.prepareSearch("reduapps")
                 .setTypes("app")
                 .addSort("views", SortOrder.DESC)
                 .addSort("appName", SortOrder.ASC);
 
-        if (text != null && !text.equals("")) {
-            builder.setQuery(QueryBuilders.prefixQuery("appName", text));
-            //builder.setQuery(QueryBuilders.moreLikeThisQuery("author", "appName", "objective", "synopsis", "description", "area", "level").likeText(text));
+        if (query != null && !query.equals("")) {
+            if (field.equals("level")){
+                builder.setQuery(QueryBuilders.matchPhraseQuery(field, query));
+            } else {
+                builder.setQuery(QueryBuilders.multiMatchQuery(query, "author", "appName", "objective", "synopsis", "description", "area", "level"));
+            }
         }
 
         SearchResponse response = builder.execute().actionGet();
@@ -69,8 +71,8 @@ public class ElasticSearchServices {
         return returnList;
     }
 
-    public static List<App> searchAppsInRange (String text, int start, int end){
-        List<App> allApps = searchApps(text);
+    public static List<App> searchAppsInRange (String field, String text, int start, int end){
+        List<App> allApps = searchApps(field, text);
         if (start > allApps.size()) {
             return null;
         } else {

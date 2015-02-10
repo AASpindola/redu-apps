@@ -12,16 +12,17 @@
 
     <div>
         @for(level <- levels){
-
+            <button class="button-default level-filter" type="button" value="@level"> @level </button>
         }
-    </div>
 
-    <form method="get" action="#" class="form-search area-fix form-search-expandable apps-portal-search-form">
-        <input id="search-input" type="text" class="control-area area-infix" placeholder="Procure Aplicativos..." data-id="apps-portal-breadcrumb">
-        <button id="search-btn" class="button-default area-suffix" type="button">
-            <span class="control-search-icon icon-magnifier-gray_16_18 text-replacement">Busca</span>
-        </button>
-    </form>
+        <form method="get" action="#" class="form-search area-fix form-search-expandable apps-portal-search-form">
+            <input id="search-input" type="text" class="control-area area-infix" placeholder="Procure Aplicativos..." data-id="apps-portal-breadcrumb">
+            <button id="search-btn" class="button-default area-suffix" type="button">
+                <span class="control-search-icon icon-magnifier-gray_16_18 text-replacement">Busca</span>
+            </button>
+        </form>
+
+    </div>
 
     <div class="oer-apps-wrapper">
         <!-- conteudo dos apps -->
@@ -30,66 +31,76 @@
 
     <script>
 
-        $(document).ready(searchAppsByName(""));
+        var startBy = 0;
+        var searchByLevel = false;
+        var levelQuery = "";
+        var nameQuery = "";
+
+        var loading = false;
+
+        $(document).ready(searchApps());
 
         $('body').on('keypress','#search-input', function(e) {
             var code = e.keyCode || e.which;
             if(code == 13) {
-                var textInput = $(this).val();
-                searchAppsByName(textInput);
+                startBy = 0;
+                searchByLevel = false;
+                nameQuery = $(this).val();
+                searchApps();
             }
         });
 
         $('body').on('click','#search-btn', function(e) {
-            var textInput = $('#search-input').val();
-            searchAppsByName(textInput);
+            startBy = 0;
+            searchByLevel = false;
+            nameQuery = $('#search-input').val();
+            searchApps();
         });
 
-        function searchAppsByName(name){
-            var query = {"q":name};
-            $.ajax({
-                url: "@routes.AppController.searchAppsByName()",
-                data: query,
-                success: function (response) {
-                    $("#apps").html(response);
-                }
-            });
-        }
-
-        function searchAppsByCategory(category){
-
-        }
-
-        var loading = false;
-        var startBy = 12;
+        $('body').on('click','.level-filter', function(e) {
+            startBy = 0;
+            searchByLevel = true;
+            levelQuery = e.currentTarget.value;
+            searchApps();
+        });
 
         $(window).scroll(function(){
             if($(window).scrollTop() == $(document).height() - $(window).height()){
                 var lastElement = $("#apps .app-item:last");
                 if (lastElement.length>0){
-                    var lastAppName = $(lastElement).attr("app-name");
                     if (!loading){
                         loading = true;
-                        loadMore();
+                        searchApps();
                     }
                 }
             }
         });
 
-        function loadMore(){
-            var query = $('#search-input').val();
+        function searchApps(){
+            var query;
+            var field = "";
+            if (searchByLevel) {
+                query = levelQuery;
+                field = "level"
+            } else {
+                query = $('#search-input').val();
+            }
             var data;
             if (query != null && query.length>0){
-                data = {"s":startBy, "q":query};
+                data = {"s":startBy, "q":query, "f":field};
             } else {
-                data = {"s":startBy};
+                data = {"s":startBy, "f":field};
             }
             $.ajax({
-                url: "@routes.AppController.searchAppsByName()",
+                url: "@routes.AppController.searchApps()",
                 type: "GET",
                 data: data,
                 success: function (res){
-                    $("#apps").append(res);
+                    if (startBy == 0) {
+                        $("#apps").html(res);
+                    } else {
+                        $("#apps").append(res);
+                    }
                 },
                 complete: function(){
                     loading = false;

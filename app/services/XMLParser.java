@@ -5,7 +5,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import tyrex.util.ArraySet;
 
 /**
  * Created by arturspindola on 29/01/15.

@@ -1,6 +1,5 @@
 package services;
 
-import bootstrap.SE;
 import models.User;
 import play.db.jpa.JPA;
 import play.libs.F;
