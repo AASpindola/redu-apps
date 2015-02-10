@@ -27,8 +27,6 @@ public class XMLParser {
         app.views = 0;
         app.url = xmlDoc.getElementsByTag("lom").get(0).attr("xmlns:lom");
         app.language = xmlDoc.getElementsByTag("language").get(0).text();
-        //app.objective;
-        //app.synopsis;
         app.description = xmlDoc.getElementsByTag("descriptionUnbounded").get(0).text();
 
         app.author = "";
@@ -52,13 +50,6 @@ public class XMLParser {
             app.copyright += copyright.text() + "; ";
         }
         app.country = xmlDoc.getElementsByTag("location").get(0).text();
-
-//        app.categories = new ArraySet();
-//
-//        app.users;
-//
-//        app.comments = new ArraySet();
-
 
         return app;
     }
