@@ -98,8 +98,9 @@ public class ElasticSearchServices {
                 .getAt(0)
                 .sourceAsString();
 
-        ObjectMapper mapper = new ObjectMapper();
         System.out.println(response);
+
+        ObjectMapper mapper = new ObjectMapper();
         JsonNode comCount = mapper.readTree(response).get("commentsCount");
         int oldCount = 0;
         if (comCount != null){

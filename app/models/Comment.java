@@ -22,7 +22,7 @@ public class Comment {
     private User author;
     @ManyToOne
     private App app;
-    @OneToMany(mappedBy = "comment")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "comment")
     private Set<Answer> answers;
 
 

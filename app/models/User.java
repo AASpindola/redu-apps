@@ -26,11 +26,11 @@ public class User {
 
     private String password;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
     public Set<Comment> comments;
-    @OneToMany(mappedBy = "author")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
     public Set<Answer> answers;
-    @OneToMany(mappedBy = "submitter")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "submitter")
     public Set<App> apps;
 
 
