@@ -1,9 +1,10 @@
 package models;
 
+import play.Logger;
 import play.db.jpa.JPA;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
+import play.db.jpa.Transactional;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -122,6 +123,12 @@ public class User {
 
     @Transactional
     public static User authenticate(String email, String password){
-        return JPA.em().find(User.class, email);
+        User aux = JPA.em().find(User.class, email);
+        if(aux.getEmail().equals(password)){
+            return aux;
+        }else{
+            return null;
+        }
+
     }
 }

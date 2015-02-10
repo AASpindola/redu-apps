@@ -2,6 +2,7 @@ package controllers;
 
 import models.User;
 import play.data.Form;
+import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.login;
@@ -10,12 +11,13 @@ import views.html.login;
 /**
  * Created by pedro on 07/02/15.
  */
-public class UserSessionController extends Controller {
+public class  UserSessionController extends Controller {
 
     public static Result login(){
         return ok(login.render(Form.form(Login.class)));
     }
 
+    @Transactional
     public static Result authenticate(){
         Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
         if (loginForm.hasErrors()) {
@@ -27,6 +29,7 @@ public class UserSessionController extends Controller {
         }
     }
 
+    @Transactional
     public static class Login {
 
         public String email;
