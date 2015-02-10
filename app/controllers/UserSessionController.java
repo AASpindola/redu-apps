@@ -7,6 +7,8 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.login;
 
+import java.util.Map;
+
 
 /**
  * Created by pedro on 07/02/15.
@@ -19,14 +21,13 @@ public class  UserSessionController extends Controller {
 
     @Transactional
     public static Result authenticate(){
-        Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
-        if (loginForm.hasErrors()) {
-            return badRequest(login.render(loginForm));
-        } else {
-            session().clear();
-            session("email", loginForm.get().email);
-            return Application.index();
+        Map<String, String[]> appQuery_data = request().body().asFormUrlEncoded();
+        if(User.authenticate(appQuery_data.get("login")[0],  appQuery_data.get("password")[0])==null){
+            return badRequest();
         }
+        session().clear();
+        session("email", appQuery_data.get("login")[0]);
+        return Application.index();
     }
 
     @Transactional

@@ -126,7 +126,7 @@ public class User {
     @Transactional
     public static User authenticate(String email, String password){
         User aux = JPA.em().find(User.class, email);
-        if(aux.getEmail().equals(password)){
+        if(aux.getPassword().equals(Cryptor.encrypt(password))){
             return aux;
         }else{
             return null;

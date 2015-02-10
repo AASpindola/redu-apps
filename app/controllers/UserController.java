@@ -25,8 +25,6 @@ public class UserController extends Controller {
 
     public static Result saveNewUser() {
 
-        // O app já é verificado no frontend
-
         Http.MultipartFormData body = request().body().asMultipartFormData();
         Map<String, String[]> appQuery_data = body.asFormUrlEncoded();
         CloudinaryService cloudinaryService = CloudinaryService.getInstance();
