@@ -19,4 +19,5 @@ conf/application.conf
 /.DS_Store
 projectFilesBackup
 projectFilesBackup1
-
+projectFilesBackup2
+data
