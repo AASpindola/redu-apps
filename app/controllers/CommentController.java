@@ -10,7 +10,9 @@ import play.mvc.Http;
 import play.mvc.Result;
 import services.AppService;
 import services.CommentService;
+import services.UserService;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -20,6 +22,8 @@ import java.util.Map;
 public class CommentController extends Controller {
 
     private static CommentService commentService = CommentService.getInstance();
+    private static UserService userService = UserService.getInstance();
+    private static AppService appService = AppService.getInstance();
 
     @Transactional
     public static Result saveNewComment() {
@@ -30,10 +34,10 @@ public class CommentController extends Controller {
         final Comment comment = new Comment();
         comment.setKind(commentQuery_data.get("kind")[0]);
         comment.setBody(commentQuery_data.get("body")[0]);
-        comment.setApp(AppService.getAppByName(commentQuery_data.get("app")[0]));
-        comment.setAuthor(CommentService.getUserByEmail(commentQuery_data.get("author")[0]));
+        comment.setApp(appService.getAppByName(commentQuery_data.get("app")[0]));
+        comment.setAuthor(userService.getUserByEmail(commentQuery_data.get("author")[0]));
         comment.setAnswers(new HashSet<Answer>());
-
+        comment.setPostedTime(new Date());
         return commentService.saveComment(comment);
     }
 
@@ -46,26 +50,12 @@ public class CommentController extends Controller {
         final Answer answer = new Answer();
         answer.setKind(commentQuery_data.get("kind")[0]);
         answer.setBody(commentQuery_data.get("body")[0]);
-        answer.setComment(CommentService.getCommentById(Long.getLong(commentQuery_data.get("comment")[0])));
-        answer.setAuthor(CommentService.getUserByEmail(commentQuery_data.get("author")[0]));
+        Long commentId = Long.parseLong(commentQuery_data.get("comment")[0]);
+        answer.setComment(commentService.getCommentById(commentId));
+        answer.setAuthor(userService.getUserByEmail(commentQuery_data.get("author")[0]));
+        answer.setPostedTime(new Date());
 
-
-        try {
-            JPA.withTransaction(new F.Function0<Boolean>() {
-                @Override
-                public Boolean apply() throws Throwable {
-                    JPA.em().persist(answer);
-                    JPA.em().getTransaction().commit();
-                    return null;
-                }
-            });
-
-            return ok("Resposta adicionada com sucesso!");
-
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-            return badRequest("Ocorreu um erro ao salvar a resposta: \n" + throwable.getMessage());
-        }
+        return commentService.saveAnswer(answer);
     }
 }
 

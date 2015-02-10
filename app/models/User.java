@@ -24,11 +24,11 @@ public class User {
 
     private String password;
 
-    @OneToMany
+    @OneToMany(mappedBy = "author")
     public Set<Comment> comments;
-    @OneToMany
+    @OneToMany(mappedBy = "author")
     public Set<Answer> answers;
-    @OneToMany
+    @OneToMany(mappedBy = "submitter")
     public Set<App> apps;
 
 

@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -13,6 +14,7 @@ public class Comment {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long commentId;
+    private Date postedTime;
     @Lob
     private String body;
     private String kind;
@@ -20,7 +22,7 @@ public class Comment {
     private User author;
     @ManyToOne
     private App app;
-    @OneToMany
+    @OneToMany(mappedBy = "comment")
     private Set<Answer> answers;
 
 
@@ -66,5 +68,13 @@ public class Comment {
 
     public void setAnswers(Set<Answer> answers) {
         this.answers = answers;
+    }
+
+    public Date getPostedTime(){
+        return postedTime;
+    }
+
+    public void setPostedTime (Date postedTime){
+        this.postedTime = postedTime;
     }
 }

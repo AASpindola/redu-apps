@@ -44,7 +44,7 @@ public class App {
     @ManyToOne
     public User submitter;
 
-    @OneToMany
+    @OneToMany(mappedBy="app")
     public Set<Comment> comments;
 
     public XContentBuilder buildXContent (){

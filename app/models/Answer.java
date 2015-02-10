@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by arturspindola on 30/01/15.
@@ -13,6 +14,7 @@ public class Answer {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long answerId;
+    private Date postedTime;
     @Lob
     private String body;
     private String kind;
@@ -55,5 +57,13 @@ public class Answer {
 
     public void setComment(Comment comment) {
         this.comment = comment;
+    }
+
+    public Date getPostedTime(){
+        return postedTime;
+    }
+
+    public void setPostedTime(Date postedTime){
+        this.postedTime = postedTime;
     }
 }
