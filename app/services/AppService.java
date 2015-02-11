@@ -1,6 +1,7 @@
 package services;
 
 import bootstrap.SE;
+import controllers.AppController;
 import models.App;
 import models.Rating;
 import play.db.jpa.JPA;
@@ -97,7 +98,7 @@ public class AppService {
                     .execute()
                     .actionGet();
 
-            return ok(app.appName + " adicionado com sucesso!");
+            return AppController.appPage(app.appName);
 
         } catch (Throwable throwable) {
             throwable.printStackTrace();
