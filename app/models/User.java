@@ -109,7 +109,7 @@ public class User {
     }
 
     public boolean isEmpty() {
-        if(email==null||firstName==null||lastName==null||role==null||thumbnail==null){
+        if(email==null||firstName==null||lastName==null){
             return true;
         }
         return false;
