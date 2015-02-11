@@ -23,11 +23,11 @@ public class UserController extends Controller {
 
     @Transactional
     public static Result newUser() {
-        User aux = null;
+        User aux = new User();
         try{
-            aux = JPA.em().find(User.class, ctx().session().get("email"));
+            if(ctx().session().get("email")!=null) aux = JPA.em().find(User.class, ctx().session().get("email"));
         }catch(IllegalArgumentException e){
-            return ok(newuser.render(new User()));
+
         }
         return ok(newuser.render(aux));
     }

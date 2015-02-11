@@ -1,5 +1,6 @@
 package models;
 
+import play.Logger;
 import play.db.jpa.JPA;
 
 import javax.persistence.*;
@@ -108,13 +109,12 @@ public class User {
 
     public boolean isEmpty() {
         if(email==null||firstName==null||lastName==null||role==null||thumbnail==null){
-            setEmpty(true);
+            return true;
         }
         return false;
     }
 
     public void setEmpty(boolean empty) {
-
         this.empty = empty;
     }
 

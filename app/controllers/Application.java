@@ -17,11 +17,11 @@ public class Application extends Controller {
         Logger.debug(ctx().session().get("email"));
         User aux = new User();
         try{
-            aux = JPA.em().find(User.class, ctx().session().get("email"));
+            if(ctx().session().get("email")!=null) aux = JPA.em().find(User.class, ctx().session().get("email"));
         }catch(IllegalArgumentException e){
             e.printStackTrace();
         }
-        Logger.debug(ctx().session().get("email"));
+        Logger.debug(String.valueOf(aux.isEmpty()));
         return ok(index.render(Arrays.asList(Constants.levels), aux));
     }
 

@@ -36,7 +36,7 @@ public class AppController extends Controller {
     public static Result newApp() {
         User aux = new User();
         try{
-            aux = JPA.em().find(User.class, ctx().session().get("email"));
+            if(ctx().session().get("email")!=null) aux = JPA.em().find(User.class, ctx().session().get("email"));
         }catch(IllegalArgumentException e){
             e.printStackTrace();
         }
@@ -57,7 +57,7 @@ public class AppController extends Controller {
 
         User aux = new User();
         try{
-            aux = JPA.em().find(User.class, ctx().session().get("email"));
+            if(ctx().session().get("email")!=null) aux = JPA.em().find(User.class, ctx().session().get("email"));
         }catch(IllegalArgumentException e){
             e.printStackTrace();
         }
@@ -153,7 +153,7 @@ public class AppController extends Controller {
 
         User aux = new User();
         try{
-            aux = JPA.em().find(User.class, ctx().session().get("email"));
+            if(ctx().session().get("email")!=null) aux = JPA.em().find(User.class, ctx().session().get("email"));
         }catch(IllegalArgumentException e){
             e.printStackTrace();
         }
@@ -178,8 +178,16 @@ public class AppController extends Controller {
         DynamicForm params = form().bindFromRequest();
         String ratingValue = params.get("r");
         String userEmail = params.get("u");
+        String appName = params.get("a");
 
-        return ok();
+        ratingValue = ratingValue == null ? "0" : ratingValue;
+
+        if (userEmail == null || appName == null || userEmail.isEmpty() || appName.isEmpty()){
+            return badRequest();
+        } else {
+            appService.saveRatingMap(appName, Double.parseDouble(ratingValue), userEmail);
+            return ok();
+        }
     }
 
 }
