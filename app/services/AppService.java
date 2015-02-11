@@ -3,12 +3,16 @@ package services;
 import bootstrap.SE;
 import controllers.AppController;
 import models.App;
+import models.Rating;
 import play.db.jpa.JPA;
 import play.libs.F;
 import play.mvc.Result;
 
 import javax.persistence.EntityManager;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 import static play.mvc.Results.badRequest;
 import static play.mvc.Results.ok;
@@ -120,6 +124,15 @@ public class AppService {
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
+    }
+
+    public static void saveRatingMap(String appName, double rating, String userEmail){
+        App app = getAppByName(appName);
+        if (app.rateMapping == null){
+            app.rateMapping = new HashSet<>();
+        }
+        app.rateMapping.add(new Rating(userEmail, rating));
+        saveApp(app);
     }
 
 }

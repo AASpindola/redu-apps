@@ -1,9 +1,11 @@
 package models;
 
+import play.Logger;
 import play.db.jpa.JPA;
 
 import javax.persistence.*;
 import play.db.jpa.Transactional;
+import services.UserService;
 import utils.Cryptor;
 
 import java.util.HashSet;
@@ -108,13 +110,12 @@ public class User {
 
     public boolean isEmpty() {
         if(email==null||firstName==null||lastName==null||role==null||thumbnail==null){
-            setEmpty(true);
+            return true;
         }
         return false;
     }
 
     public void setEmpty(boolean empty) {
-
         this.empty = empty;
     }
 
@@ -139,7 +140,8 @@ public class User {
 
     @Transactional
     public static User authenticate(String email, String password){
-        User aux = JPA.em().find(User.class, email);
+        UserService userService = UserService.getInstance();
+        User aux =  userService.getUserByEmail(email);
         if(aux.getPassword().equals(Cryptor.encrypt(password))){
             return aux;
         }else{

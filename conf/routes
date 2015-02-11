@@ -11,6 +11,7 @@ POST        /newapp              controllers.AppController.saveNewApp()
 POST        /parseXML            controllers.AppController.parseXML()
 GET         /app/:name           controllers.AppController.appPage(name)
 GET         /appsresult          controllers.AppController.searchApps()
+POST        /rateapp             controllers.AppController.rateApp()
 
 # user related endpoints
 GET         /register            controllers.UserController.newUser()
