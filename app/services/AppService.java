@@ -130,7 +130,7 @@ public class AppService {
         if (app.rateMapping == null){
             app.rateMapping = new HashSet<>();
         }
-        app.rateMapping.add(new Rating(userEmail, rating));
+        app.rateMapping.add(new Rating(userEmail, rating, app));
         saveApp(app);
     }
 

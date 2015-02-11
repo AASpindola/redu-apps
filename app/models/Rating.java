@@ -17,8 +17,9 @@ public class Rating {
     @ManyToOne
     public App app;
 
-    public Rating (String email, double value){
+    public Rating (String email, double value, App app){
         this.email = email;
         this.value = value;
+        this.app = app;
     }
 }

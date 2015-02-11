@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Rating;
 import models.User;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -28,6 +29,7 @@ public class AppController extends Controller {
     public static XMLParser xmlParser = XMLParser.getInstance();
     public static UserService userService = UserService.getInstance();
     public static ElasticSearchServices elasticSearchServices = ElasticSearchServices.getInstance();
+    public static RatingService ratingService = RatingService.getInstance();
 
     @Transactional
     public static Result newApp() {
@@ -153,14 +155,19 @@ public class AppController extends Controller {
         elasticSearchServices.updateViewsCount(app.appName, app.views);
 
         User aux = new User();
+        double ratingVal = 0;
         try{
-            if(ctx().session().get("email")!=null){
-                aux = userService.getUserByEmail(ctx().session().get("email"));
+            String email = ctx().session().get("email");
+            if(email!=null){
+                aux = userService.getUserByEmail(email);
+                List<Rating> ratings = ratingService.getRating(name, email);
+                ratingVal = (ratings==null || ratings.isEmpty()) ? 0 : ratings.get(0).value;
+                System.out.println(ratingVal);
             }
         }catch(IllegalArgumentException e){
             e.printStackTrace();
         }
-        return ok(apppage.render(app, aux));
+        return ok(apppage.render(app, aux, ratingVal));
     }
 
     public static Result searchApps() {
@@ -188,7 +195,8 @@ public class AppController extends Controller {
         if (userEmail == null || appName == null || userEmail.isEmpty() || appName.isEmpty()){
             return badRequest();
         } else {
-            appService.saveRatingMap(appName, Double.parseDouble(ratingValue), userEmail);
+            App app = appService.getAppByName(appName);
+            ratingService.saveRating(new Rating(userEmail, Double.parseDouble(ratingValue), app));
             return ok();
         }
     }
