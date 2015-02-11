@@ -1,5 +1,6 @@
 package services;
 
+import controllers.AppController;
 import models.Answer;
 import models.App;
 import models.Comment;
@@ -70,7 +71,7 @@ public class CommentService {
 
             elasticSearchServices.updateCommentsCount(comment.getApp().appName);
 
-            return ok("Comentário adicionado com sucesso!");
+            return AppController.appPage(comment.getApp().appName);
 
         } catch (Throwable throwable) {
             throwable.printStackTrace();
@@ -95,7 +96,7 @@ public class CommentService {
                 }
             });
 
-            return ok("Resposta adicionada com sucesso!");
+            return AppController.appPage(answer.getComment().getApp().appName);
 
         } catch (Throwable throwable) {
             throwable.printStackTrace();
