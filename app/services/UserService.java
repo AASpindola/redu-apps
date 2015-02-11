@@ -34,7 +34,7 @@ public class UserService {
     public static User getUserByEmail (String email) {
 
         String q = "SELECT a FROM User a WHERE email = :email";
-        List<User> resultSet = JPA.em().createQuery(q, User.class)
+        List<User> resultSet = em.createQuery(q, User.class)
                 .setParameter("email", email)
                 .getResultList();
 

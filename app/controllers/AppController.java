@@ -4,21 +4,17 @@ import models.User;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import play.data.DynamicForm;
-import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
 import models.App;
-import services.AppService;
+import services.*;
 import bootstrap.Constants;
 
 import java.io.IOException;
 import java.util.*;
 
-import services.CloudinaryService;
-import services.ElasticSearchServices;
-import services.XMLParser;
 import views.html.*;
 
 import static play.data.Form.form;
@@ -30,13 +26,16 @@ public class AppController extends Controller {
 
     public static AppService appService = AppService.getInstance();
     public static XMLParser xmlParser = XMLParser.getInstance();
+    public static UserService userService = UserService.getInstance();
     public static ElasticSearchServices elasticSearchServices = ElasticSearchServices.getInstance();
 
     @Transactional
     public static Result newApp() {
         User aux = new User();
         try{
-            if(ctx().session().get("email")!=null) aux = JPA.em().find(User.class, ctx().session().get("email"));
+            if(ctx().session().get("email")!=null){
+                aux = userService.getUserByEmail(ctx().session().get("email"));
+            }
         }catch(IllegalArgumentException e){
             e.printStackTrace();
         }
@@ -57,7 +56,9 @@ public class AppController extends Controller {
 
         User aux = new User();
         try{
-            if(ctx().session().get("email")!=null) aux = JPA.em().find(User.class, ctx().session().get("email"));
+            if(ctx().session().get("email")!=null){
+                aux = userService.getUserByEmail(ctx().session().get("email"));
+            }
         }catch(IllegalArgumentException e){
             e.printStackTrace();
         }
@@ -153,7 +154,9 @@ public class AppController extends Controller {
 
         User aux = new User();
         try{
-            if(ctx().session().get("email")!=null) aux = JPA.em().find(User.class, ctx().session().get("email"));
+            if(ctx().session().get("email")!=null){
+                aux = userService.getUserByEmail(ctx().session().get("email"));
+            }
         }catch(IllegalArgumentException e){
             e.printStackTrace();
         }
