@@ -39,7 +39,7 @@ public class ElasticSearchServices {
             if (field.equals("level")){
                 builder.setQuery(QueryBuilders.matchPhraseQuery(field, query));
             } else {
-                builder.setQuery(QueryBuilders.multiMatchQuery(query, "author", "appName", "objective", "synopsis", "description", "area", "level"));
+                builder.setQuery(QueryBuilders.multiMatchQuery(query, "author", "appName", "objective", "synopsis", "description", "area"));
             }
         }
 

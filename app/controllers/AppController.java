@@ -41,7 +41,11 @@ public class AppController extends Controller {
         }catch(IllegalArgumentException e){
             e.printStackTrace();
         }
-        return ok(newapp.render(Arrays.asList(Constants.levels), Arrays.asList(Constants.area), new App(), aux));
+        if (aux.isEmpty()){
+            return badRequest("Você precisa estar logado para adicionar um aplicativo");
+        } else {
+            return ok(newapp.render(Arrays.asList(Constants.levels), Arrays.asList(Constants.area), new App(), aux));
+        }
     }
 
     @Transactional
@@ -64,7 +68,6 @@ public class AppController extends Controller {
         }catch(IllegalArgumentException e){
             e.printStackTrace();
         }
-
         return ok(newapp.render(Arrays.asList(Constants.levels), Arrays.asList(Constants.area), app, aux));
     }
 
@@ -98,10 +101,7 @@ public class AppController extends Controller {
             app.level = appQuery_data.get("app-level")[0];
             app.area = appQuery_data.get("app-area")[0];
 
-            app.ratingCount = 0;
-            app.rating = 0;
             app.views = 0;
-            app.favouriteCount = 0;
 
             app.comments = new HashSet<>();
 
@@ -162,12 +162,13 @@ public class AppController extends Controller {
                 aux = userService.getUserByEmail(email);
                 List<Rating> ratings = ratingService.getRating(name, email);
                 ratingVal = (ratings==null || ratings.isEmpty()) ? 0 : ratings.get(0).value;
-                System.out.println(ratingVal);
             }
         }catch(IllegalArgumentException e){
             e.printStackTrace();
         }
-        return ok(apppage.render(app, aux, ratingVal));
+        double appRatingVal = ratingService.calculateAppRate(name);
+        System.out.println(aux.email);
+        return ok(apppage.render(app, aux, ratingVal, appRatingVal));
     }
 
     public static Result searchApps() {
@@ -196,7 +197,7 @@ public class AppController extends Controller {
             return badRequest();
         } else {
             App app = appService.getAppByName(appName);
-            ratingService.saveRating(new Rating(userEmail, Double.parseDouble(ratingValue), app));
+            ratingService.updateRating(app, userEmail, Double.parseDouble(ratingValue));
             return ok();
         }
     }

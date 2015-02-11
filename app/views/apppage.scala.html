@@ -1,4 +1,4 @@
-@(app: models.App, user: User, rating: Double)
+@(app: models.App, user: User, userRating: Double, appRating: Double)
 
 @main(app.appName){
 
@@ -24,16 +24,17 @@
             <!-- Área de classificação. -->
             <div class="oer-rating">
 
-                <div id="rate" value="@rating" onclick="rate('@user.email', '@app.appName')" class="rateit" data-rateit-resetable="false">
+                <div id="rate" data-rateit-value="@userRating" onclick="rate('@user.email', '@app.appName')" class="rateit" data-rateit-resetable="false">
                 </div>
             </div>
             <!-- Contadores. -->
             <ul class="oer-counters">
                 <li id="evaluation-count" class="oer-counter legend icon-star-empty-gray_16_18-before">
-                    Nenhuma classificação.
-                </li>
-                <li class="oer-counter legend icon-favorite-gray_16_18-before">
-                    Nenhum favorito.
+                    @if(appRating==0){
+                        Nenhuma classificação.
+                    }else{
+                        @appRating
+                    }
                 </li>
                 <li class="oer-counter legend icon-seen-gray_16_18-before">
                     @app.views visualizações.
@@ -131,7 +132,7 @@
 <div class="content-section oer-comments reply-buttons">
     <ul class="reply-buttons-list">
         <li>
-            <button class="button-primary button-big reply-status button-comment icon-comment-white_blue_32_34-before" title="Comentar sobre este aplicativo" onclick="toggle_visibility('comment-form')">Comentar</button>
+            <button class="button-primary button-big reply-status button-comment icon-comment-white_blue_32_34-before" title="Comentar sobre este aplicativo" onclick='checkUserLoggedInForComment("@user.email")'>Comentar</button>
         </li>
     </ul>
 
@@ -232,7 +233,7 @@
                         <!-- ###########FIM DA SECAO DO _RESPONSE.scala.html #################################-->
                         <!-- IF CAN COMMENT -->
                         <ul class="actions">
-                            <li class="reply-status icon-reply-gray_8_10-before" onclick="toggle_visibility('response-form-@comment.getCommentId()')">
+                            <li class="reply-status icon-reply-gray_8_10-before" onclick="checkUserLoggedInForAnswer('@user.email','response-form-@comment.getCommentId()')">
                                 <span class="link-fake link-secondary">Responder</span>
                             </li>
                         </ul>
@@ -241,7 +242,7 @@
                             <!-- ###########SECAO DO _RESPONSE_FORM.scala.html #################################-->
                             <form method="POST" action="@routes.CommentController.saveNewAnswer" enctype="multipart/form-data" class="status-tab status-list create-status tab-left">
                                 <input type="hidden" name="kind" value="common">
-                                <input type="hidden" name="author" value="mscreboucas@@gmail.com">
+                                <input type="hidden" name="author" value="@user.email">
                                 <input type="hidden" name="comment" value="@comment.getCommentId()">
                                 <textarea name="body" rows="6"></textarea>
                                 <ul class="status-buttons">
@@ -283,16 +284,38 @@
 
     function rate(email, appName) {
         var ratingValue = $("#rate").rateit('value');
-        var data = {"r": ratingValue, "u":email, "a":appName};
+        if (email == "") {
+            alert("Você precisa estar logado para votar");
+            $("#rate").rateit('reset');
+        } else {
 
-        $.ajax({
-            url: "@routes.AppController.rateApp()",
-            type: "POST",
-            data: data,
-            success: function (res){
-                alert("Voto Registrado");
-            }
-        });
+            var data = {"r": ratingValue, "u": email, "a": appName};
+
+            $.ajax({
+                url: "@routes.AppController.rateApp()",
+                type: "POST",
+                data: data,
+                success: function (res) {
+                    alert("Voto Registrado");
+                }
+            });
+        }
+    }
+
+    function checkUserLoggedInForComment(email){
+        if(email==null||email==""){
+            alert("Você precisa estar logado para comentar");
+        } else {
+            toggle_visibility('comment-form');
+        }
+    }
+
+    function checkUserLoggedInForAnswer(email, tagId){
+        if(email==null||email==""){
+            alert("Você precisa estar logado para responder");
+        } else {
+            toggle_visibility(tagId);
+        }
     }
 
     </script>

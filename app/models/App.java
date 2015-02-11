@@ -20,9 +20,6 @@ public class App {
     public String appName;
     public String thumbnail;
     public int views;
-    public int favouriteCount;
-    public double rating;
-    public int ratingCount;
     public String url;
     public String author;
     public String language;

@@ -76,4 +76,20 @@ public class RatingService {
         }
     }
 
+    public static double calculateAppRate(String appName){
+        String q = "SELECT a FROM Rating a WHERE app.appName = :appName";
+        double sum = 0;
+        List<Rating> resultSet = em.createQuery(q, Rating.class)
+                .setParameter("appName", appName)
+                .getResultList();
+        if (resultSet.size() == 0){
+            return 0;
+        }
+
+        for (Rating rat : resultSet){
+            sum += rat.value;
+        }
+        return sum/resultSet.size();
+    }
+
 }

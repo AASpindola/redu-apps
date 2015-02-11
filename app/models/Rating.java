@@ -11,7 +11,7 @@ public class Rating {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private long ratingId;
+    public long ratingId;
     public String email;
     public double value;
     @ManyToOne
@@ -21,5 +21,9 @@ public class Rating {
         this.email = email;
         this.value = value;
         this.app = app;
+    }
+
+    public Rating(){
+
     }
 }
