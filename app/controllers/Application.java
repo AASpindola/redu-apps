@@ -1,5 +1,6 @@
 package controllers;
 
+import bootstrap.SE;
 import models.User;
 import play.Logger;
 import play.db.jpa.JPA;
@@ -26,8 +27,13 @@ public class Application extends Controller {
         }catch(IllegalArgumentException e){
             e.printStackTrace();
         }
-        Logger.debug(String.valueOf(aux.isEmpty()));
         return ok(index.render(Arrays.asList(Constants.levels), aux));
+    }
+
+    public static Result deleteSE() {
+        SE.client.admin().indices().prepareDelete("reduapps").execute()
+                .actionGet();
+        return ok("deleted!");
     }
 
 }

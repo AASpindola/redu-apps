@@ -37,9 +37,11 @@ public class UserService {
         List<User> resultSet = em.createQuery(q, User.class)
                 .setParameter("email", email)
                 .getResultList();
-
-        return resultSet.get(0);
-
+        if (resultSet==null || resultSet.size() == 0){
+            return null;
+        } else {
+            return resultSet.get(0);
+        }
     }
 
     public static Result saveUser(User user){

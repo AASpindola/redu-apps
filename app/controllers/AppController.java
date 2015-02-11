@@ -105,8 +105,7 @@ public class AppController extends Controller {
 
             app.comments = new HashSet<>();
 
-            //app.screenshots =
-            //app.submitters = pegar o user logado
+            app.submitter = userService.getUserByEmail(appQuery_data.get("app-submitter")[0]);
 
             Http.MultipartFormData.FilePart thumbnail = body.getFile("app-thumbnail");
             if (thumbnail != null && thumbnail.getFile() != null) {

@@ -4,6 +4,7 @@
 
 # Home page
 GET         /                    controllers.Application.index()
+GET         /deleteSE            controllers.Application.deleteSE()
 
 # app related endpoints
 GET         /newapp              controllers.AppController.newApp()

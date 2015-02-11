@@ -18,10 +18,10 @@
     <div class="header-not-logged-in">
         <div class="container">
             <div class="header-logo-wrapper">
-                <a title="Redu" href="#" class="header-logo sprite-logo">
+                <a title="Redu" href="@routes.Application.index()" class="header-logo sprite-logo">
                     <h1 class="text-replacement" title="Redu">Redu</h1>
                 </a>
-                @if(user.isEmpty) {
+                @if(user==null||user.isEmpty) {
                     <div class="header-logo-title-wrapper">
                         <h2 class="header-logo-title">Você ainda não se identificou no Redu.</h2>
                         <span class="header-logo-legend legend">
@@ -35,7 +35,7 @@
                     </div>
                 }
             </div>
-            @if(user.isEmpty) {
+            @if(user==null||user.isEmpty) {
 
                 <div class="header-buttons">
                     <div class="header-button-sign-up">

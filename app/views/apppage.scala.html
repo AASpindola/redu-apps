@@ -83,7 +83,7 @@
 
                 <!-- Botões. -->
                 <div class="oer-buttons">
-                    <button class="button-default" data-toggle="modal-app">Abrir este Recurso</button>
+                    <a href="/@app.url" target="_blank"><button class="button-default" data-toggle="modal-app">Abrir este Recurso</button></a>
                     <button class="button-default" data-toggle="modal-app">Exportar como xml</button>
                 </div>
             </div>
@@ -97,7 +97,7 @@
                         <span class="legend"><em>Detentor dos Direitos:</em> @app.copyright</span>
                     </li>
                     <li class="oer-meta-item">
-                        <span class="legend"><em>Submetido por:</em> @app.submitter</span>
+                        <span class="legend"><em>Submetido por:</em> @app.submitter.firstName @app.submitter.lastName</span>
                     </li>
                 </ul>
 
@@ -141,7 +141,7 @@
 
         <form method="POST" action="@routes.CommentController.saveNewComment" enctype="multipart/form-data" class="status-tab status-list create-response tab-right">
             <input type="hidden" name="kind" value="common">
-            <input type="hidden" name="author" value="mscreboucas@@gmail.com">
+            <input type="hidden" name="author" value="@user.email">
             <input type="hidden" name="app" value="@app.appName">
             <textarea name="body" rows="6"></textarea>
             <ul class="status-buttons">
